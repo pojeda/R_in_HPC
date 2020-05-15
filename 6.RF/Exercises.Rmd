@@ -1,5 +1,7 @@
 ---
 title: "Exercises"
+author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund"
+date: "May 27th, 2020"
 output: html_document
 ---
 
@@ -9,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Problem 1
 
-Take a look at the code for the credit bank data set in the script **parallel.R** and also at the **job_parallel.sh** batch script. Set the number of cores you want to use in both scripts first to 1 and then increase the number up to 6. Upload the working folder to Kebnekaise and run the simulation. Monitor the timings for the simulations. You may use the *usage* tool on Kebnekaise.
+Take a look at the code for the credit bank data set in the script **parallel.R** and also at the **job_parallel.sh** batch script. Set the number of cores you want to use in both scripts first to 1 and then increase the number up to 6. Upload the working folder to Kebnekaise and run the simulation. Monitor the timings for the simulations. You may use the *job-usage* tool on Kebnekaise.
 
 ## Problem 2
  
