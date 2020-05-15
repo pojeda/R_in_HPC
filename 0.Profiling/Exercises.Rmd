@@ -1,12 +1,8 @@
 ---
 title: "Exercises"
-author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski"
+author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund"
 date: "May 27th, 2020"
-output: 
-    ioslides_presentation:
-       widescreen: true
-       css: custom.css
-       logo: logo.png
+output: html_document
 ---
 
 ## Problem 1.
@@ -27,7 +23,6 @@ compare the profiling results of the following functions:
 
 * a) a function sumcol to compute the sum of the elements by columns, you can use the following template,
 
-## Problem 2.
 
 ```{r eval=FALSE}
 sumcol <- function(B) {
@@ -46,7 +41,6 @@ sumcol <- function(B) {
 res1 <- sumcol(A)
 ```
 
-## Problem 2.
 
 * b) the R built-in function
 
@@ -54,7 +48,6 @@ res1 <- sumcol(A)
 colSums()
 ```
 
-## Problem 2.
 
 * Use the Rprof package to obtain the profiling summary. 
 * Are the performances of the two functions similar? 
