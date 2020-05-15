@@ -1,0 +1,99 @@
+---
+title: "Solution"
+output: html_document
+---
+
+## Problem 1. 
+
+if the R program uses more than 1 core we can expect *user* time to be longer than *elapsed* time.
+
+## Problem 2.
+
+Given the matrix A:
+
+```{r eval=FALSE}
+A <- matrix(1.0, 5000, 5000)
+```
+
+compare the profiling results of the following functions:
+
+a)
+
+```{r eval=FALSE}
+sumcol <- function(B) {
+   l <- ncol(B)  #obtain the number of columns
+   colsm <- rep(0,l) #create a vector to save the sums
+
+   for(j in 1:l){  
+      s <- 0
+      for(i in 1:l){
+          s <- s + B[i,j]
+      }
+      colsm[j] <- s
+   }
+   return(colsm)
+}
+```
+
+and b)
+
+```{r eval=FALSE}
+res2 <- colSums(A)
+```
+
+```{r eval=FALSE}
+Rprof("Rprofa.out")
+res1 <- sumcol(A)
+Rprof(NULL)
+summaryRprof("Rprofa.out") 
+
+$by.self
+              self.time self.pct total.time total.pct
+"sumcol"           1.94    98.98       1.96    100.00
+"findLocals1"      0.02     1.02       0.02      1.02
+
+$by.total
+                       total.time total.pct self.time self.pct
+"sumcol"                     1.96    100.00      1.94    98.98
+"findLocals1"                0.02      1.02      0.02     1.02
+"cmpfun"                     0.02      1.02      0.00     0.00
+"compiler:::tryCmpfun"       0.02      1.02      0.00     0.00
+"doTryCatch"                 0.02      1.02      0.00     0.00
+"findLocalsList"             0.02      1.02      0.00     0.00
+"findLocalsList1"            0.02      1.02      0.00     0.00
+"FUN"                        0.02      1.02      0.00     0.00
+"funEnv"                     0.02      1.02      0.00     0.00
+"lapply"                     0.02      1.02      0.00     0.00
+"make.functionContext"       0.02      1.02      0.00     0.00
+"tryCatch"                   0.02      1.02      0.00     0.00
+"tryCatchList"               0.02      1.02      0.00     0.00
+"tryCatchOne"                0.02      1.02      0.00     0.00
+
+$sample.interval
+[1] 0.02
+
+$sampling.time
+[1] 1.96
+```
+
+```{r eval=FALSE}
+Rprof("Rprofb.out")
+res2 <- colSums(A)
+Rprof(NULL)
+summaryRprof("Rprofb.out") 
+$by.self
+          self.time self.pct total.time total.pct
+"colSums"      0.04      100       0.04       100
+
+$by.total
+          total.time total.pct self.time self.pct
+"colSums"       0.04       100      0.04      100
+
+$sample.interval
+[1] 0.02
+
+$sampling.time
+[1] 0.04
+``` 
+
+The differences between the two functions can be traced back to the number of functions calls in the first case.

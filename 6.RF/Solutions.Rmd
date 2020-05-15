@@ -1,0 +1,52 @@
+---
+title: "Solutions"
+output: html_document
+---
+
+
+
+## Problem 2.
+
+
+```{r eval=FALSE}
+library(doParallel)
+library(tictoc)
+
+#A <- matrix(sample(0:1, 1000000, replace = TRUE),10000,10000)
+A <- matrix(1.0, 5000, 1000)
+
+cl <- makeCluster(2)
+registerDoParallel(cl)
+gcinfo(TRUE)
+tic()
+res1 <- foreach(i=1:nrow(A), .combine='rbind') %dopar% (A[i,]/mean(A[i,])) 
+toc()
+gcinfo(FALSE)
+stopCluster(cl)
+```
+
+## Problem 3.
+
+```{r eval=TRUE}
+library(doParallel)
+library(tictoc)
+
+max.eig <- function(N, sigma) {
+    d <- matrix(rnorm(N**2, sd = sigma), nrow = N)
+
+    E <- eigen(d)$values
+    
+    abs(E)[[1]]
+}
+
+
+cl <- makeCluster(1)
+registerDoParallel(cl)
+tic()
+res2 <- foreach(n = 1:500, .combine='rbind') %dopar% max.eig(n, 1)
+toc()
+stopCluster(cl)
+
+tic()
+res3 <- sapply(1:500, function(n) {max.eig(n, 1)})
+toc()

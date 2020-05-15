@@ -1,0 +1,92 @@
+---
+title: "Solutions"
+output: html_document
+---
+
+
+
+## Problem 1. 
+
+```{r eval=TRUE}
+sumcol <- function(B) {
+  l <- ncol(B)  #obtain the number of columns
+  colsm <- rep(0,l) #create a vector to save the sums
+  
+  for(j in 1:l){  
+    s <- 0
+    for(i in 1:l){
+      s <- s + B[i,j]
+    }
+    colsm[j] <- s
+  }
+  return(colsm)
+}
+
+A <- matrix(1.0, 5000, 5000)
+library(tictoc)
+tic()
+res2 <- sumcol(A)
+toc()
+
+sumcol2 <- function(B) {
+  l <- ncol(B)  #obtain the number of columns
+  
+  mn <- colSums(A)
+
+  return(mn)
+}
+
+tic()
+res3 <- sumcol2(A)
+toc()
+```
+
+## Problem 2.
+
+Create a function which computes the standard deviation of each column of a matrix A of size 10000x3 using for loops 
+
+```{r eval=TRUE}
+#A <- matrix(1.0, 1000000, 3)
+A <- matrix(sample(0:1, 1000000, replace = TRUE),1000000,3)
+
+sdcol <- function(B) {
+  l <- ncol(B)  #obtain the number of columns
+  n <- nrow(B)  #obtain the number of rows
+  colsm <- rep(0,l) #create a vector to save the means
+  colsd <- rep(0,l) #create a vector to save the sd
+  
+  for(j in 1:l){  
+    s <- 0
+    for(i in 1:n){
+      s <- s + B[i,j]
+    }
+    colsm[j] <- s/n
+  }
+  
+  for(j in 1:l){  
+    s <- 0
+    for(i in 1:n){
+      s <- s + (B[i,j] - colsm[j])^2
+    }
+    colsd[j] <- sqrt( s/(n-1))
+  }
+  
+  return(colsd)
+}
+
+library(tictoc)
+tic()
+res1 <- sdcol(A)
+toc()
+
+tic()
+res2 <- apply(A,2,sd)
+toc()
+
+#install.packages("matrixStats")
+library(matrixStats)
+tic()
+res3 <- colSds(A)
+toc()
+```
+

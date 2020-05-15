@@ -1,0 +1,11 @@
+---
+title: "Exercises"
+output: html_document
+---
+
+
+## Problem 1.
+Using the functions sumcol() and colSums() from the Profiling section, obtain a memory profiling summary using Rprof
+
+## Problem 2.
+Using the above setup for the large array *bm*, compute the media and standard deviation of each column.

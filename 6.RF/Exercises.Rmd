@@ -1,0 +1,45 @@
+---
+title: "Exercises"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem 1
+
+Take a look at the code for the credit bank data set in the script **parallel.R** and also at the **job_parallel.sh** batch script. Set the number of cores you want to use in both scripts first to 1 and then increase the number up to 6. Upload the working folder to Kebnekaise and run the simulation. Monitor the timings for the simulations. You may use the *usage* tool on Kebnekaise.
+
+## Problem 2
+ 
+Create a matrix A of ones with a size 1000x1000. Analyze the timings and memory usage with tictoc and gcinfo() respectively of the following function:
+
+```{r eval=FALSE}
+res1 <- foreach(i=1:nrow(A), .combine='rbind') %dopar% (A[i,]/mean(A[i,]))
+```
+
+what are the timings when one goes from 1 core to 2 cores? Does the performance improve upon increasing the number of cores?
+
+## Problem 3.
+
+Compare the performance of the following function for computing the eigenvalues of a matrix of NxN (500x500) by using a different number of cores and using the **foreach** function:
+
+```{r eval=FALSE}
+max.eig <- function(N, sigma) {
+    d <- matrix(rnorm(N**2, sd = sigma), nrow = N)
+
+    E <- eigen(d)$values
+    
+    abs(E)[[1]]
+}
+```
+
+How is the performance of the **foreach** function compared to a **sapply** vectorized function for a single core:
+
+```{r eval=FALSE}
+res3 <- sapply(1:500, function(n) {max.eig(n, 1)})
+```
+
+
+

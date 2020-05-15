@@ -1,0 +1,61 @@
+---
+title: "Exercises"
+author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski"
+date: "May 27th, 2020"
+output: 
+    ioslides_presentation:
+       widescreen: true
+       css: custom.css
+       logo: logo.png
+---
+
+## Problem 1.
+
+* When the *user* time is longer than the *elapsed* time from system.time() function?
+
+## Problem 2.
+
+Given the matrix A of ones with a size of 5000x5000:
+
+```{r eval=FALSE}
+A <- #initialize the matrix
+```
+
+compare the profiling results of the following functions:
+
+* a) a function sumcol to compute the sum of the elements by columns, you can use the following template,
+
+## Problem 2.
+
+```{r eval=FALSE}
+sumcol <- function(B) {
+   l <- #obtain the number of columns
+   colsm <- #create a vector to save the sums
+
+   for(i in 1:l){  
+      s <- 0  #collect partial sums
+      for(j in 1:l){
+          s <- s + #sum the columns of the matrix
+      }
+      colsm[i] <- s
+   }
+   return(colsm)
+}
+res1 <- sumcol(A)
+```
+
+## Problem 2.
+
+* b) the R built-in function
+
+```{r eval=FALSE}
+colSums()
+```
+
+## Problem 2.
+
+* Use the Rprof package to obtain the profiling summary. 
+* Are the performances of the two functions similar? 
+* The two functions do the same calculation, why the performaces could differ?
+* What is the most time consuming part in the function **sumcol()**? *Hint: One can use tic/toc functions for monitoring parts of the functions.*
+* **Challenge:** Obtain the profiling summary by using microbenchmark and rbenchmark packages.

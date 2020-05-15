@@ -1,0 +1,32 @@
+---
+title: "Exercises"
+output: html_document
+---
+
+
+## Problem 1
+
+In the previous module about Profiling we wrote a function for computing the sum of the elements of each column:
+
+```{r eval=FALSE}
+sumcol <- function(B) {
+  l <- ncol(B)  #obtain the number of columns
+  colsm <- rep(0,l) #create a vector to save the sums
+  
+  for(j in 1:l){  
+    s <- 0
+    for(i in 1:l){
+      s <- s + B[i,j]
+    }
+    colsm[j] <- s
+  }
+  return(colsm)
+}
+```
+
+we also observed that the loops were the most expensive part of the function. Use the vectorized function colSums() to simplify the loop and monitored the performance of these two functions (sumcol) and your proposal with any of the already seen profiling tools.
+
+## Problem 2.
+
+Create a function which computes the standard deviation of each column of a matrix A of size 10000x3 using for loops. Compare the performance of this function with the vectorized counterpart *apply()* function for computing the standard deviation. Finally, compare the performance of these two functions with the colSds() function from the *library(matrixStats)* package.
+
