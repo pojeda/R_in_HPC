@@ -5,7 +5,7 @@ output: html_document
 
 ## Problem 1. 
 
-if the R program uses more than 1 core we can expect *user* time to be longer than *elapsed* time.
+If the R program uses more than 1 core we can expect *user* time to be longer than *elapsed* time.
 
 ## Problem 2.
 

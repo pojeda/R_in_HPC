@@ -11,9 +11,11 @@ output:
 
 ## Problem 1.
 
-* When the *user* time is longer than the *elapsed* time from system.time() function?
+When the *user* time is longer than the *elapsed* time from system.time() function?
 
 ## Problem 2.
+
+In this problem, you should use the templates to write your own code. 
 
 Given the matrix A of ones with a size of 5000x5000:
 
