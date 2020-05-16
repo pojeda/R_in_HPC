@@ -1,0 +1,14 @@
+The material for the *R in HPC* course is provided in the following directories:
+          
+          * 0.Profiling
+          * 1.Optimizing
+          * 2.RAM
+          * 3.MotivationHPC
+          * 6.RF
+          
+Notes:
+* Inside the directories (except for 6.RF), there is a markdown document (*.Rmd*) and the resulting *.html* document which I generated. We will use this *.html* document during the course so you are not expected to compile the *.Rmd* file.
+
+* Instead of compiling the *.Rmd* file, you can work on the corresponding *.R* file to execute parts of the code.
+
+* For the Exercises, we provided you with templates for the functions. Here, you are expected to write your own code using this template.
