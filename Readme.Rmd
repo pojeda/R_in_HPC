@@ -1,3 +1,5 @@
+May 27th, 2020
+
 The material for the *R in HPC* course is provided in the following directories:
           
           * 0.Profiling
