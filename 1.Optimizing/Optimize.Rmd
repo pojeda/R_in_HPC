@@ -1,6 +1,6 @@
 ---
 title: "Optimizing your code"
-author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski"
+author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund"
 date: "May 27th, 2020"
 output: 
     ioslides_presentation:
@@ -61,7 +61,7 @@ system.time(
 )
 ```
 
-the important message from this example is that loops are expensive in R.
+a message from this example is that loops are expensive in R and vectorization can help to improve the performance of the code.
 
 ## Memory pre-allocation
 
@@ -92,17 +92,19 @@ This example shows that pre-allocating memory reduces the execution time.
 
 ```{r}
 data1 <- rnorm(1E4*1000)
-dim(data1) <- c(1E4,1000)
-system.time(data1 <- rowSums(data1))
+dataf <- data.frame(data1)
+system.time(data2 <- rowSums(dataf))
 ```
 
 ## Using Data Frames
 
 ```{r}
 data1 <- rnorm(1E4*1000)
-dataf <- data.frame(data1)
-system.time(data2 <- rowSums(dataf))
+dim(data1) <- c(1E4,1000)
+system.time(data1 <- rowSums(data1))
 ```
+
+
 
 Then, it is more efficient to use matrices upon doing numerical calculations rather than Data Frames. 
 
@@ -213,7 +215,7 @@ bench
 ```
 
 
-## Advanced Topics: 
+## Advanced Topics (Kebnekaise): 
 
 ### Calling external functions
 
@@ -275,8 +277,15 @@ bench
 
 On Kebnekaise the OpenBLAS libraries are available:
 
-```{r eval=TRUE}
+```{r eval=FALSE}
 sessionInfo()
+
+R version 3.6.0 (2019-04-26)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 16.04.6 LTS
+
+Matrix products: default
+BLAS/LAPACK: /cvmfs/.../8.2.0-2.31.1/OpenBLAS/0.3.5/lib/libopenblas_haswellp-r0.3.5.so
 ```
 
 ## Advanced Topics:
@@ -319,4 +328,6 @@ cat(c("Computation of eig. random matrix 5000x5000 (sec): ", times, "\n"))
 
 ## References
 * R High Performance Programming. Aloysius, Lim; William, Tjhi. Packt Publishing, 2015.
+* http://adv-r.had.co.nz/Profiling.html#vectorise
+* http://adv-r.had.co.nz/Functionals.html#functionals
 * [Pi vectorization](https://helloacm.com/r-programming-tutorial-how-to-compute-pi-using-monte-carlo-in-r/)

@@ -1,5 +1,5 @@
 #2.1 Profiling memory
-sim <- function(l) {
+siml <- function(l) {
   c <- rep(0,l)
   hits <- 0
   listp <- as.list(seq(10000000))
@@ -23,7 +23,7 @@ sim <- function(l) {
 #Using Rprof
 
 Rprof("Rprof-mem.out", memory.profiling=TRUE)
-res <- sim(size)
+res <- siml(size)
 Rprof(NULL)
 summaryRprof("Rprof-mem.out", memory="both")
 
@@ -32,7 +32,7 @@ summaryRprof("Rprof-mem.out", memory="both")
 gc()
 size <- 1000000
 gcinfo(TRUE)
-res <- sim(size)
+res <- siml(size)
 gc()
 gcinfo(FALSE)
 
@@ -69,7 +69,7 @@ object_size(y)
 #Installing package:  
 #devtools::install_github("hadley/lineprof")
 library(lineprof)
-sim <- function(l) {
+siml <- function(l) {
   c <- rep(0,l)
   hits <- 0
   listp <- as.list(seq(10000000))
@@ -89,8 +89,8 @@ sim <- function(l) {
   
   return(c)
 }
-
-prof <- lineprof(sim(10000))
+res <- sim(10000)
+prof <- lineprof(siml(10000))
 summary(prof)
 prof
 shine(prof)

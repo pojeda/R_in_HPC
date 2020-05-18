@@ -1,6 +1,6 @@
 ---
 title: "Memory management"
-author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski"
+author: "Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund"
 date: "May 27th, 2020"
 output: 
     ioslides_presentation:
@@ -14,7 +14,7 @@ output:
 Rprof has tools for profiling memory:
 
 ```{r}
-sim <- function(l) {
+siml <- function(l) {
  c <- rep(0,l); hits <- 0            #variables initialization
  listp <- as.list(seq(10000000))
  pow2 <- function(x) { x2 <- sqrt( x[1]*x[1]+x[2]*x[2] ); return(x2) }
@@ -31,7 +31,7 @@ sim <- function(l) {
 ```{r}
 size <- 100000
 Rprof("Rprof-mem.out", memory.profiling=TRUE)
-res <- sim(size)
+res <- siml(size)
 Rprof(NULL)
 ```
 
@@ -52,7 +52,7 @@ A better approach would be by using gc() function. gc() reports memory usage at 
 gc()
 size <- 1000000
 gcinfo(TRUE)
-res <- sim(size)
+res <- siml(size)
 gc()
 gcinfo(FALSE)
 ```
@@ -67,7 +67,7 @@ Vcells 1429291 11.0    8388608 64.0  1644410 12.6
 > size <- 1000000
 > gcinfo(TRUE)
 [1] FALSE
-> res <- sim(size)
+> res <- siml(size)
 ...
 Garbage collection 57 = 47+3+7 (level 0) ... 
 564.9 Mbytes of cons cells used (75%)
@@ -169,7 +169,7 @@ devtools::install_github("hadley/lineprof")
 
 ```{r eval=FALSE}
 library(lineprof)
-sim <- function(l) {
+siml <- function(l) {
   c <- rep(0,l); hits <- 0
   listp <- as.list(seq(10000000))
   pow2 <- function(x) { x2 <- sqrt( x[1]*x[1]+x[2]*x[2] ); return(x2) }
@@ -186,7 +186,7 @@ sim <- function(l) {
 ## Profiling Memory: Lineprof
 
 ```{r eval=FALSE}
-prof <- lineprof(sim(10000))
+prof <- lineprof(siml(10000))
 prof
 
 Output: 

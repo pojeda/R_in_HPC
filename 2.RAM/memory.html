@@ -30,7 +30,7 @@
       // Author information
       presenters: [
             {
-        name:  'Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski' ,
+        name:  'Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -3159,7 +3159,7 @@ slide:not(.current) .plotly.html-widget{
 
 <p>Rprof has tools for profiling memory:</p>
 
-<pre class = 'prettyprint lang-r'>sim &lt;- function(l) {
+<pre class = 'prettyprint lang-r'>siml &lt;- function(l) {
  c &lt;- rep(0,l); hits &lt;- 0            #variables initialization
  listp &lt;- as.list(seq(10000000))
  pow2 &lt;- function(x) { x2 &lt;- sqrt( x[1]*x[1]+x[2]*x[2] ); return(x2) }
@@ -3174,7 +3174,7 @@ slide:not(.current) .plotly.html-widget{
 
 <pre class = 'prettyprint lang-r'>size &lt;- 100000
 Rprof(&quot;Rprof-mem.out&quot;, memory.profiling=TRUE)
-res &lt;- sim(size)
+res &lt;- siml(size)
 Rprof(NULL)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Profiling Memory: Rprof</h2></hgroup><article  id="profiling-memory-rprof-2">
@@ -3183,63 +3183,65 @@ Rprof(NULL)</pre>
 
 <pre >## $by.self
 ##                   self.time self.pct total.time total.pct mem.total
-## &quot;as.list.default&quot;      1.40    66.67       1.40     66.67     682.9
-## &quot;runif&quot;                0.48    22.86       0.48     22.86     149.8
-## &quot;sim&quot;                  0.10     4.76       2.10    100.00     945.1
-## &quot;pow2&quot;                 0.06     2.86       0.06      2.86      30.8
-## &quot;attr&quot;                 0.04     1.90       0.04      1.90       2.8
-## &quot;findCenvVar&quot;          0.02     0.95       0.02      0.95       0.0
+## &quot;as.list.default&quot;      1.28    65.98       1.28     65.98     667.1
+## &quot;runif&quot;                0.42    21.65       0.42     21.65     139.6
+## &quot;siml&quot;                 0.12     6.19       1.94    100.00     929.2
+## &quot;pow2&quot;                 0.06     3.09       0.06      3.09      61.4
+## &quot;cmpPrim2&quot;             0.02     1.03       0.04      2.06       0.0
+## &quot;attr&quot;                 0.02     1.03       0.02      1.03       1.2
+## &quot;putconst&quot;             0.02     1.03       0.02      1.03       0.0
 ## 
 ## $by.total
 ##                        total.time total.pct mem.total self.time self.pct
-## &quot;sim&quot;                        2.10    100.00     945.1      0.10     4.76
-## &quot;block_exec&quot;                 2.10    100.00     945.1      0.00     0.00
-## &quot;call_block&quot;                 2.10    100.00     945.1      0.00     0.00
-## &quot;eval&quot;                       2.10    100.00     945.1      0.00     0.00
-## &quot;evaluate&quot;                   2.10    100.00     945.1      0.00     0.00
-## &quot;evaluate::evaluate&quot;         2.10    100.00     945.1      0.00     0.00
-## &quot;evaluate_call&quot;              2.10    100.00     945.1      0.00     0.00
-## &quot;handle&quot;                     2.10    100.00     945.1      0.00     0.00
-## &quot;in_dir&quot;                     2.10    100.00     945.1      0.00     0.00
-## &quot;knitr::knit&quot;                2.10    100.00     945.1      0.00     0.00
-## &quot;process_file&quot;               2.10    100.00     945.1      0.00     0.00
-## &quot;process_group&quot;              2.10    100.00     945.1      0.00     0.00
-## &quot;process_group.block&quot;        2.10    100.00     945.1      0.00     0.00
-## &quot;rmarkdown::render&quot;          2.10    100.00     945.1      0.00     0.00
-## &quot;timing_fn&quot;                  2.10    100.00     945.1      0.00     0.00
-## &quot;withCallingHandlers&quot;        2.10    100.00     945.1      0.00     0.00
-## &quot;withVisible&quot;                2.10    100.00     945.1      0.00     0.00
-## &quot;as.list.default&quot;            1.40     66.67     682.9      1.40    66.67
-## &quot;as.list&quot;                    1.40     66.67     682.9      0.00     0.00
-## &quot;runif&quot;                      0.48     22.86     149.8      0.48    22.86
-## &quot;pow2&quot;                       0.06      2.86      30.8      0.06     2.86
-## &quot;cmp&quot;                        0.06      2.86       2.8      0.00     0.00
-## &quot;cmpCall&quot;                    0.06      2.86       2.8      0.00     0.00
-## &quot;cmpfun&quot;                     0.06      2.86       2.8      0.00     0.00
-## &quot;compiler:::tryCmpfun&quot;       0.06      2.86       2.8      0.00     0.00
-## &quot;doTryCatch&quot;                 0.06      2.86       2.8      0.00     0.00
-## &quot;genCode&quot;                    0.06      2.86       2.8      0.00     0.00
-## &quot;h&quot;                          0.06      2.86       2.8      0.00     0.00
-## &quot;tryCatch&quot;                   0.06      2.86       2.8      0.00     0.00
-## &quot;tryCatchList&quot;               0.06      2.86       2.8      0.00     0.00
-## &quot;tryCatchOne&quot;                0.06      2.86       2.8      0.00     0.00
-## &quot;tryInline&quot;                  0.06      2.86       2.8      0.00     0.00
-## &quot;attr&quot;                       0.04      1.90       2.8      0.04     1.90
-## &quot;cb$setcurexpr&quot;              0.04      1.90       2.8      0.00     0.00
-## &quot;cmpForBody&quot;                 0.04      1.90       2.8      0.00     0.00
-## &quot;getExprSrcref&quot;              0.04      1.90       2.8      0.00     0.00
-## &quot;findCenvVar&quot;                0.02      0.95       0.0      0.02     0.95
-## &quot;cb$putconst&quot;                0.02      0.95       0.0      0.00     0.00
-## &quot;cmpCallArgs&quot;                0.02      0.95       0.0      0.00     0.00
-## &quot;cmpCallSymFun&quot;              0.02      0.95       0.0      0.00     0.00
-## &quot;cmpSymbolAssign&quot;            0.02      0.95       0.0      0.00     0.00
-## &quot;findFunDef&quot;                 0.02      0.95       0.0      0.00     0.00
+## &quot;siml&quot;                       1.94    100.00     929.2      0.12     6.19
+## &quot;block_exec&quot;                 1.94    100.00     929.2      0.00     0.00
+## &quot;call_block&quot;                 1.94    100.00     929.2      0.00     0.00
+## &quot;eval&quot;                       1.94    100.00     929.2      0.00     0.00
+## &quot;evaluate&quot;                   1.94    100.00     929.2      0.00     0.00
+## &quot;evaluate::evaluate&quot;         1.94    100.00     929.2      0.00     0.00
+## &quot;evaluate_call&quot;              1.94    100.00     929.2      0.00     0.00
+## &quot;handle&quot;                     1.94    100.00     929.2      0.00     0.00
+## &quot;in_dir&quot;                     1.94    100.00     929.2      0.00     0.00
+## &quot;knitr::knit&quot;                1.94    100.00     929.2      0.00     0.00
+## &quot;process_file&quot;               1.94    100.00     929.2      0.00     0.00
+## &quot;process_group&quot;              1.94    100.00     929.2      0.00     0.00
+## &quot;process_group.block&quot;        1.94    100.00     929.2      0.00     0.00
+## &quot;rmarkdown::render&quot;          1.94    100.00     929.2      0.00     0.00
+## &quot;timing_fn&quot;                  1.94    100.00     929.2      0.00     0.00
+## &quot;withCallingHandlers&quot;        1.94    100.00     929.2      0.00     0.00
+## &quot;withVisible&quot;                1.94    100.00     929.2      0.00     0.00
+## &quot;as.list.default&quot;            1.28     65.98     667.1      1.28    65.98
+## &quot;as.list&quot;                    1.28     65.98     667.1      0.00     0.00
+## &quot;runif&quot;                      0.42     21.65     139.6      0.42    21.65
+## &quot;pow2&quot;                       0.06      3.09      61.4      0.06     3.09
+## &quot;cmp&quot;                        0.06      3.09       1.2      0.00     0.00
+## &quot;cmpCall&quot;                    0.06      3.09       1.2      0.00     0.00
+## &quot;cmpfun&quot;                     0.06      3.09       1.2      0.00     0.00
+## &quot;compiler:::tryCmpfun&quot;       0.06      3.09       1.2      0.00     0.00
+## &quot;doTryCatch&quot;                 0.06      3.09       1.2      0.00     0.00
+## &quot;genCode&quot;                    0.06      3.09       1.2      0.00     0.00
+## &quot;h&quot;                          0.06      3.09       1.2      0.00     0.00
+## &quot;tryCatch&quot;                   0.06      3.09       1.2      0.00     0.00
+## &quot;tryCatchList&quot;               0.06      3.09       1.2      0.00     0.00
+## &quot;tryCatchOne&quot;                0.06      3.09       1.2      0.00     0.00
+## &quot;tryInline&quot;                  0.06      3.09       1.2      0.00     0.00
+## &quot;cmpPrim2&quot;                   0.04      2.06       0.0      0.02     1.03
+## &quot;cmpForBody&quot;                 0.04      2.06       1.2      0.00     0.00
+## &quot;cmpSymbolAssign&quot;            0.04      2.06       0.0      0.00     0.00
+## &quot;attr&quot;                       0.02      1.03       1.2      0.02     1.03
+## &quot;putconst&quot;                   0.02      1.03       0.0      0.02     1.03
+## &quot;cb$putcode&quot;                 0.02      1.03       0.0      0.00     0.00
+## &quot;cb$setcurexpr&quot;              0.02      1.03       1.2      0.00     0.00
+## &quot;cmpPrim1&quot;                   0.02      1.03       0.0      0.00     0.00
+## &quot;cmpSubsetDispatch&quot;          0.02      1.03       0.0      0.00     0.00
+## &quot;cmpSym&quot;                     0.02      1.03       0.0      0.00     0.00
+## &quot;getExprSrcref&quot;              0.02      1.03       1.2      0.00     0.00
 ## 
 ## $sample.interval
 ## [1] 0.02
 ## 
 ## $sampling.time
-## [1] 2.1</pre>
+## [1] 1.94</pre>
 
 <p>notice that the memory usage reported is the accumulated memory.</p>
 
@@ -3250,7 +3252,7 @@ Rprof(NULL)</pre>
 <pre class = 'prettyprint lang-r'>gc()
 size &lt;- 1000000
 gcinfo(TRUE)
-res &lt;- sim(size)
+res &lt;- siml(size)
 gc()
 gcinfo(FALSE)</pre>
 
@@ -3263,7 +3265,7 @@ Vcells 1429291 11.0    8388608 64.0  1644410 12.6
 &gt; size &lt;- 1000000
 &gt; gcinfo(TRUE)
 [1] FALSE
-&gt; res &lt;- sim(size)
+&gt; res &lt;- siml(size)
 ...
 Garbage collection 57 = 47+3+7 (level 0) ... 
 564.9 Mbytes of cons cells used (75%)
@@ -3356,7 +3358,7 @@ object_size(y)</pre>
 </article></slide><slide class=""><hgroup><h2>Profiling Memory: Lineprof</h2></hgroup><article  id="profiling-memory-lineprof-1">
 
 <pre class = 'prettyprint lang-r'>library(lineprof)
-sim &lt;- function(l) {
+siml &lt;- function(l) {
   c &lt;- rep(0,l); hits &lt;- 0
   listp &lt;- as.list(seq(10000000))
   pow2 &lt;- function(x) { x2 &lt;- sqrt( x[1]*x[1]+x[2]*x[2] ); return(x2) }
@@ -3371,7 +3373,7 @@ sim &lt;- function(l) {
 
 </article></slide><slide class=""><hgroup><h2>Profiling Memory: Lineprof</h2></hgroup><article  id="profiling-memory-lineprof-2">
 
-<pre class = 'prettyprint lang-r'>prof &lt;- lineprof(sim(10000))
+<pre class = 'prettyprint lang-r'>prof &lt;- lineprof(siml(10000))
 prof
 
 Output: 

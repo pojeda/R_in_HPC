@@ -30,5 +30,5 @@ we also observed that the loops were the most expensive part of the function. Us
 
 ## Problem 2.
 
-Create a function which computes the standard deviation of each column of a matrix A of size 10000x3 using for loops. Compare the performance of this function with the vectorized counterpart *apply()* function for computing the standard deviation. Finally, compare the performance of these two functions with the colSds() function from the *library(matrixStats)* package.
+Create a function which computes the standard deviation of each column of a matrix A of size 10000x3 using for loops. Compare the performance of this function with the counterpart *apply()* function for computing the standard deviation. Finally, compare the performance of these two functions with the colSds() function from the *library(matrixStats)* package.
 

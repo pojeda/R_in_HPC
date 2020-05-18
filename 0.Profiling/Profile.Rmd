@@ -9,7 +9,14 @@ output:
        logo: logo.png
 ---
 
+## Profiling 
+
+* summary of the times spent in different function calls
+* memory usage report
+
 ## Pi calculation
+
+![](MC1.png){width=100px}
 
 $\textrm{Surface circle} = \left ( \frac{\textrm{Surface circle}}{\textrm{Surface square}} \right ) * (\textrm{Surface square})$  
 
