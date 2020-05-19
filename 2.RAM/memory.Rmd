@@ -155,7 +155,7 @@ object_size(x, y)
 after modifying one element of the list we get a different value:
 
 ```{r eval=TRUE}
-y[[1]] <- as.integer(x+1)
+y[[1]] <- as.integer(x+1-1)
 object_size(y)
 ```
 

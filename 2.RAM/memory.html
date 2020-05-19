@@ -3183,61 +3183,65 @@ Rprof(NULL)</pre>
 
 <pre >## $by.self
 ##                   self.time self.pct total.time total.pct mem.total
-## &quot;runif&quot;                3.32    57.64       3.32     57.64    1605.4
-## &quot;as.list.default&quot;      1.06    18.40       1.06     18.40     679.4
-## &quot;siml&quot;                 0.84    14.58       5.74     99.65    3419.3
-## &quot;pow2&quot;                 0.48     8.33       0.48      8.33     434.1
-## &quot;tryInline&quot;            0.02     0.35       0.04      0.69       4.6
-## &quot;putconst&quot;             0.02     0.35       0.02      0.35       0.5
-## &quot;Rprof&quot;                0.02     0.35       0.02      0.35       0.0
+## &quot;runif&quot;                3.10    55.36       3.10     55.36    1606.6
+## &quot;as.list.default&quot;      1.08    19.29       1.08     19.29     681.6
+## &quot;siml&quot;                 0.74    13.21       5.60    100.00    3394.3
+## &quot;pow2&quot;                 0.62    11.07       0.62     11.07     508.8
+## &quot;putconst&quot;             0.04     0.71       0.04      0.71       1.3
+## &quot;%in%&quot;                 0.02     0.36       0.02      0.36       0.0
 ## 
 ## $by.total
 ##                        total.time total.pct mem.total self.time self.pct
-## &quot;block_exec&quot;                 5.76    100.00    3419.3      0.00     0.00
-## &quot;call_block&quot;                 5.76    100.00    3419.3      0.00     0.00
-## &quot;eval&quot;                       5.76    100.00    3419.3      0.00     0.00
-## &quot;evaluate&quot;                   5.76    100.00    3419.3      0.00     0.00
-## &quot;evaluate::evaluate&quot;         5.76    100.00    3419.3      0.00     0.00
-## &quot;evaluate_call&quot;              5.76    100.00    3419.3      0.00     0.00
-## &quot;handle&quot;                     5.76    100.00    3419.3      0.00     0.00
-## &quot;in_dir&quot;                     5.76    100.00    3419.3      0.00     0.00
-## &quot;knitr::knit&quot;                5.76    100.00    3419.3      0.00     0.00
-## &quot;process_file&quot;               5.76    100.00    3419.3      0.00     0.00
-## &quot;process_group&quot;              5.76    100.00    3419.3      0.00     0.00
-## &quot;process_group.block&quot;        5.76    100.00    3419.3      0.00     0.00
-## &quot;rmarkdown::render&quot;          5.76    100.00    3419.3      0.00     0.00
-## &quot;timing_fn&quot;                  5.76    100.00    3419.3      0.00     0.00
-## &quot;withCallingHandlers&quot;        5.76    100.00    3419.3      0.00     0.00
-## &quot;withVisible&quot;                5.76    100.00    3419.3      0.00     0.00
-## &quot;siml&quot;                       5.74     99.65    3419.3      0.84    14.58
-## &quot;runif&quot;                      3.32     57.64    1605.4      3.32    57.64
-## &quot;as.list.default&quot;            1.06     18.40     679.4      1.06    18.40
-## &quot;as.list&quot;                    1.06     18.40     679.4      0.00     0.00
-## &quot;pow2&quot;                       0.48      8.33     434.1      0.48     8.33
-## &quot;tryInline&quot;                  0.04      0.69       4.6      0.02     0.35
-## &quot;cmp&quot;                        0.04      0.69       4.6      0.00     0.00
-## &quot;cmpCall&quot;                    0.04      0.69       4.6      0.00     0.00
-## &quot;cmpForBody&quot;                 0.04      0.69       4.6      0.00     0.00
-## &quot;cmpfun&quot;                     0.04      0.69       4.6      0.00     0.00
-## &quot;compiler:::tryCmpfun&quot;       0.04      0.69       4.6      0.00     0.00
-## &quot;doTryCatch&quot;                 0.04      0.69       4.6      0.00     0.00
-## &quot;genCode&quot;                    0.04      0.69       4.6      0.00     0.00
-## &quot;h&quot;                          0.04      0.69       4.6      0.00     0.00
-## &quot;tryCatch&quot;                   0.04      0.69       4.6      0.00     0.00
-## &quot;tryCatchList&quot;               0.04      0.69       4.6      0.00     0.00
-## &quot;tryCatchOne&quot;                0.04      0.69       4.6      0.00     0.00
-## &quot;putconst&quot;                   0.02      0.35       0.5      0.02     0.35
-## &quot;Rprof&quot;                      0.02      0.35       0.0      0.02     0.35
-## &quot;cb$putcode&quot;                 0.02      0.35       0.5      0.00     0.00
-## &quot;cmpConst&quot;                   0.02      0.35       0.5      0.00     0.00
-## &quot;cmpPrim2&quot;                   0.02      0.35       0.5      0.00     0.00
-## &quot;cmpSymbolAssign&quot;            0.02      0.35       4.2      0.00     0.00
+## &quot;siml&quot;                       5.60    100.00    3394.3      0.74    13.21
+## &quot;block_exec&quot;                 5.60    100.00    3394.3      0.00     0.00
+## &quot;call_block&quot;                 5.60    100.00    3394.3      0.00     0.00
+## &quot;eval&quot;                       5.60    100.00    3394.3      0.00     0.00
+## &quot;evaluate&quot;                   5.60    100.00    3394.3      0.00     0.00
+## &quot;evaluate::evaluate&quot;         5.60    100.00    3394.3      0.00     0.00
+## &quot;evaluate_call&quot;              5.60    100.00    3394.3      0.00     0.00
+## &quot;handle&quot;                     5.60    100.00    3394.3      0.00     0.00
+## &quot;in_dir&quot;                     5.60    100.00    3394.3      0.00     0.00
+## &quot;knitr::knit&quot;                5.60    100.00    3394.3      0.00     0.00
+## &quot;process_file&quot;               5.60    100.00    3394.3      0.00     0.00
+## &quot;process_group&quot;              5.60    100.00    3394.3      0.00     0.00
+## &quot;process_group.block&quot;        5.60    100.00    3394.3      0.00     0.00
+## &quot;rmarkdown::render&quot;          5.60    100.00    3394.3      0.00     0.00
+## &quot;timing_fn&quot;                  5.60    100.00    3394.3      0.00     0.00
+## &quot;withCallingHandlers&quot;        5.60    100.00    3394.3      0.00     0.00
+## &quot;withVisible&quot;                5.60    100.00    3394.3      0.00     0.00
+## &quot;runif&quot;                      3.10     55.36    1606.6      3.10    55.36
+## &quot;as.list.default&quot;            1.08     19.29     681.6      1.08    19.29
+## &quot;as.list&quot;                    1.08     19.29     681.6      0.00     0.00
+## &quot;pow2&quot;                       0.62     11.07     508.8      0.62    11.07
+## &quot;cmp&quot;                        0.06      1.07       1.3      0.00     0.00
+## &quot;cmpCall&quot;                    0.06      1.07       1.3      0.00     0.00
+## &quot;cmpfun&quot;                     0.06      1.07       1.3      0.00     0.00
+## &quot;cmpPrim2&quot;                   0.06      1.07       1.3      0.00     0.00
+## &quot;compiler:::tryCmpfun&quot;       0.06      1.07       1.3      0.00     0.00
+## &quot;doTryCatch&quot;                 0.06      1.07       1.3      0.00     0.00
+## &quot;genCode&quot;                    0.06      1.07       1.3      0.00     0.00
+## &quot;h&quot;                          0.06      1.07       1.3      0.00     0.00
+## &quot;tryCatch&quot;                   0.06      1.07       1.3      0.00     0.00
+## &quot;tryCatchList&quot;               0.06      1.07       1.3      0.00     0.00
+## &quot;tryCatchOne&quot;                0.06      1.07       1.3      0.00     0.00
+## &quot;tryInline&quot;                  0.06      1.07       1.3      0.00     0.00
+## &quot;putconst&quot;                   0.04      0.71       1.3      0.04     0.71
+## &quot;cb$putcode&quot;                 0.04      0.71       1.3      0.00     0.00
+## &quot;cmpConst&quot;                   0.04      0.71       1.3      0.00     0.00
+## &quot;cmpForBody&quot;                 0.04      0.71       1.3      0.00     0.00
+## &quot;%in%&quot;                       0.02      0.36       0.0      0.02     0.36
+## &quot;cmpPrim1&quot;                   0.02      0.36       0.0      0.00     0.00
+## &quot;cmpSubsetDispatch&quot;          0.02      0.36       0.0      0.00     0.00
+## &quot;cmpSym&quot;                     0.02      0.36       0.0      0.00     0.00
+## &quot;cmpSymbolAssign&quot;            0.02      0.36       0.0      0.00     0.00
+## &quot;findCenvVar&quot;                0.02      0.36       0.0      0.00     0.00
+## &quot;findVar&quot;                    0.02      0.36       0.0      0.00     0.00
 ## 
 ## $sample.interval
 ## [1] 0.02
 ## 
 ## $sampling.time
-## [1] 5.76</pre>
+## [1] 5.6</pre>
 
 <p>notice that the memory usage reported is the accumulated memory.</p>
 
@@ -3310,7 +3314,7 @@ Vcells 1431935 11.0   21254219 162.2  1431935 11.0   </pre>
 
 <pre class = 'prettyprint lang-r'>library(pryr)</pre>
 
-<p>By using <strong>object_size()</strong> function, we can monitor how an object request for memory as it grows:</p>
+<p>R allocates memory in a heuristic manner. To see this, let us monitor how an object request for memory as it grows with the <strong>object_size()</strong> function:</p>
 
 </article></slide><slide class=""><hgroup><h2>Profiling Memory: Pryr</h2></hgroup><article  id="profiling-memory-pryr-1">
 
@@ -3342,7 +3346,7 @@ object_size(y)</pre>
 
 <p>after modifying one element of the list we get a different value:</p>
 
-<pre class = 'prettyprint lang-r'>y[[1]] &lt;- as.integer(x+1)
+<pre class = 'prettyprint lang-r'>y[[1]] &lt;- as.integer(x+1-1)
 object_size(y)</pre>
 
 <pre >## 8 MB</pre>
