@@ -29,7 +29,7 @@ siml <- function(l) {
 ## Profiling Memory: Rprof
 
 ```{r}
-size <- 100000
+size <- 1000000
 Rprof("Rprof-mem.out", memory.profiling=TRUE)
 res <- siml(size)
 Rprof(NULL)
@@ -170,7 +170,8 @@ devtools::install_github("hadley/lineprof")
 ```{r eval=FALSE}
 library(lineprof)
 siml <- function(l) {
-  c <- rep(0,l); hits <- 0
+  c <- rep(0,l); 
+  hits <- 0
   listp <- as.list(seq(10000000))
   pow2 <- function(x) { x2 <- sqrt( x[1]*x[1]+x[2]*x[2] ); return(x2) }
   for(i in 1:l){
@@ -186,23 +187,27 @@ siml <- function(l) {
 ## Profiling Memory: Lineprof
 
 ```{r eval=FALSE}
-prof <- lineprof(siml(10000))
+prof <- lineprof(siml(1000000))
 prof
 
 Output: 
-    time   alloc release dups                                   ref
-1  0.008   4.603   0.000 1996 c("compiler:::tryCmpfun", "tryCatch")
-2  0.972 553.132   5.209   49       c("as.list", "as.list.default")
-3  0.007   0.421   0.000    0                          character(0)
-4  0.001   0.387   0.000    0                               "runif"
-5  0.001   0.314   0.000    0                                "pow2"
-6  0.004   1.804   0.000    0                               "runif"
-7  0.001   0.587   0.000    0                          character(0)
-8  0.001   0.586   0.000    0                               "runif"
-9  0.001   0.500   0.000    0                          character(0)
-10 0.007   3.687   0.000    0                               "runif"
-11 0.001   0.638   0.000    0                          character(0)
-12 0.001   0.194   0.000    0                                    #6
+     time   alloc release dups                                   ref
+1   0.009   5.624   0.000 1808 c("compiler:::tryCmpfun", "tryCatch")
+2   0.002   0.100   0.000  235                          character(0)
+3   0.520 556.091   5.220    2       c("as.list", "as.list.default")
+4   0.001   5.332   0.000    0                               "runif"
+5   0.001   5.253   0.000    0                          character(0)
+6   0.001   5.197   0.000    0                                    #6
+7   0.009  17.406  16.858    0                               "runif"
+8   0.001   8.230   0.000    0                          character(0)
+9   0.019  24.799  48.774    0                               "runif"
+10  0.001  11.420   0.000    0                          character(0)
+11  0.002   7.451   0.000    0                               "runif"
+12  0.002   1.415   0.000    0                          character(0)
+13  0.003   1.869   0.000    0                               "runif"
+14  0.001   0.970   0.000    0                                "pow2"
+15  0.015   1.550  23.684    0                               "runif"
+16  0.001   8.525   0.000    0                          character(0)  
 ```
 
 ## Dealing with big arrays

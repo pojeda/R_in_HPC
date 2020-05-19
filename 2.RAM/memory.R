@@ -21,7 +21,7 @@ siml <- function(l) {
 }
 
 #Using Rprof
-
+size <- 1000000
 Rprof("Rprof-mem.out", memory.profiling=TRUE)
 res <- siml(size)
 Rprof(NULL)
@@ -89,8 +89,8 @@ siml <- function(l) {
   
   return(c)
 }
-res <- sim(10000)
-prof <- lineprof(siml(10000))
+
+prof <- lineprof(siml(1000000))
 summary(prof)
 prof
 shine(prof)
@@ -124,4 +124,16 @@ while (start <= nrow(bm)) {
 
 
 #2. Using the bm array above, compute the mean and standard deviation of each column
+
+#3.
+x <- runif(1e+09)
+  for (i in 1:length(x)) {
+    if (x[i] < 0.05) {
+      x[i] <- NA
+    }
+  }
+
+
+x <- runif(1e+09)
+  x[which(x < 0.05)] <- NA 
 

@@ -3,13 +3,9 @@ title: "Solution"
 output: html_document
 ---
 
-
-
-## Solutions
-
 ## Problem 1. 
 
-The first function sumcol uses 4Mb of memory:
+The first function sumcol uses 3.8Mb of memory:
 
 ```{r eval=FALSE}
 
@@ -86,7 +82,7 @@ $sampling.time
 [1] 1.62
 ```
 
-The second function doesn't allocate memory:
+The second function allocates 0.1Mb memory:
 
 ```{r eval=FALSE}
 Rprof("Rprof-memb.out", memory.profiling=TRUE)
@@ -116,14 +112,14 @@ By using the bm array, one can compute the mean and standard deviation as follow
 ```{r eval=TRUE}
 library(bigmemory)
 set.seed(1234)
-bm <- big.matrix(1e8, 3, backingfile = "bm", backingpath = getwd())
+bm <- big.matrix(1e7, 3, backingfile = "bm", backingpath = getwd())
 bm
 ```
 
-now, work with chunks of $10^7$ rows,
+now, work with chunks of $10^6$ rows,
 
 ```{r eval=TRUE}
-chunksize <- 1e7
+chunksize <- 1e6
 start <- 1
 while (start <= nrow(bm)) {
   end <- min(start + chunksize -1, nrow(bm))
@@ -139,7 +135,7 @@ means:
 
 ```{r eval=TRUE}
 col.sums <- numeric(3)
-chunksize <- 1e7
+chunksize <- 1e6
 start <- 1
 while (start <= nrow(bm)) {
   end <- min(start + chunksize -1, nrow(bm))
@@ -154,7 +150,7 @@ standard deviations:
 
 ```{r eval=TRUE}
 col.sq.dev <- numeric(3)
-chunksize <- 1e7
+chunksize <- 1e6
 start <- 1
 while (start <= nrow(bm)) {
   end <- min(start + chunksize -1, nrow(bm))
@@ -164,3 +160,17 @@ while (start <= nrow(bm)) {
 col.var <- col.sq.dev/(nrow(bm)-1)
 col.sd <- sqrt(col.var)
 ```
+
+## Problem 3.
+
+Execution times are:
+
+```{r eval=FALSE}
+                           1st. function   
+vector size          1e+06     1e+07    1e+08
+time(sec)             0.05      0.5      4.89 
+                          Vectorized function
+time(sec)             0.0       0.1     0.81
+```
+                          
+based on this data, the vectorized function had the best performance. However, one needs to take into account the memory usage which in the case of the vectorized one is at least twice of the initial vector **x**.

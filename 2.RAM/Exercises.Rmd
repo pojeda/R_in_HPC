@@ -10,4 +10,29 @@ output: html_document
 Using the functions sumcol() and colSums() from the Profiling section, obtain a memory profiling summary using Rprof
 
 ## Problem 2.
-Using the above setup for the large array *bm*, compute the media and standard deviation of each column.
+Using the above setup for the large array *bm*, compute the media and standard deviation of each column for a matrix with a size 1e7x3 and using chunks of 1e6.
+
+## Problem 3. 
+The following R function uses a cutoff of 0.05 to assing the value **NA** to the vector elements:
+
+```{r}
+x <- runif(1e+06)
+for (i in 1:length(x)) {
+  if (x[i] < 0.05) {
+    x[i] <- NA
+  }
+}
+```
+
+below is the vectorized counterpart:
+
+```{r}
+x <- runif(1e+06)
+x[which(x < 0.05)] <- NA 
+```
+
+compare the execution times of both functions using vector sizes of 1e+06, 1e+07, and 1e+08. 
+
+Questions: 
+   * which function showed the best performance?
+   * would you *always* use that function? why yes/not?

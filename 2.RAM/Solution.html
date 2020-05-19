@@ -379,11 +379,9 @@ summary {
 </div>
 
 
-<div id="solutions" class="section level2">
-<h2>Solutions</h2>
-<div id="section" class="section level3">
-<h3>1.</h3>
-<p>The first function sumcol uses 4Mb of memory:</p>
+<div id="problem-1." class="section level2">
+<h2>Problem 1.</h2>
+<p>The first function sumcol uses 3.8Mb of memory:</p>
 <pre class="r"><code>A &lt;- matrix(1.0, 5000, 5000)
 sumcol &lt;- function(B) {
   l &lt;- ncol(B)  #obtain the number of columns
@@ -455,7 +453,7 @@ $sample.interval
 
 $sampling.time
 [1] 1.62</code></pre>
-<p>The second function doesn’t allocate memory:</p>
+<p>The second function allocates 0.1Mb memory:</p>
 <pre class="r"><code>Rprof(&quot;Rprof-memb.out&quot;, memory.profiling=TRUE)
 res2 &lt;- colSums(A)
 Rprof(NULL)
@@ -475,21 +473,21 @@ $sample.interval
 $sampling.time
 [1] 0.02</code></pre>
 </div>
-<div id="section-1" class="section level3">
-<h3>2.</h3>
+<div id="problem-2." class="section level2">
+<h2>Problem 2.</h2>
 <p>By using the bm array, one can compute the mean and standard deviation as follows:</p>
 <pre class="r"><code>library(bigmemory)</code></pre>
 <pre><code>## Warning: package &#39;bigmemory&#39; was built under R version 3.6.3</code></pre>
 <pre class="r"><code>set.seed(1234)
-bm &lt;- big.matrix(1e8, 3, backingfile = &quot;bm&quot;, backingpath = getwd())</code></pre>
+bm &lt;- big.matrix(1e7, 3, backingfile = &quot;bm&quot;, backingpath = getwd())</code></pre>
 <pre><code>## Warning in filebacked.big.matrix(nrow = nrow, ncol = ncol, type = type, : No
 ## descriptor file given, it will be named bm.desc</code></pre>
 <pre class="r"><code>bm</code></pre>
 <pre><code>## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x000000001502bbe0&gt;</code></pre>
-<p>now, work with chunks of <span class="math inline">\(10^7\)</span> rows,</p>
-<pre class="r"><code>chunksize &lt;- 1e7
+## &lt;pointer: 0x00000000110000d0&gt;</code></pre>
+<p>now, work with chunks of <span class="math inline">\(10^6\)</span> rows,</p>
+<pre class="r"><code>chunksize &lt;- 1e6
 start &lt;- 1
 while (start &lt;= nrow(bm)) {
   end &lt;- min(start + chunksize -1, nrow(bm))
@@ -501,7 +499,7 @@ while (start &lt;= nrow(bm)) {
 }</code></pre>
 <p>means:</p>
 <pre class="r"><code>col.sums &lt;- numeric(3)
-chunksize &lt;- 1e7
+chunksize &lt;- 1e6
 start &lt;- 1
 while (start &lt;= nrow(bm)) {
   end &lt;- min(start + chunksize -1, nrow(bm))
@@ -511,7 +509,7 @@ while (start &lt;= nrow(bm)) {
 col.means &lt;- col.sums / nrow(bm)</code></pre>
 <p>standard deviations:</p>
 <pre class="r"><code>col.sq.dev &lt;- numeric(3)
-chunksize &lt;- 1e7
+chunksize &lt;- 1e6
 start &lt;- 1
 while (start &lt;= nrow(bm)) {
   end &lt;- min(start + chunksize -1, nrow(bm))
@@ -521,6 +519,15 @@ while (start &lt;= nrow(bm)) {
 col.var &lt;- col.sq.dev/(nrow(bm)-1)
 col.sd &lt;- sqrt(col.var)</code></pre>
 </div>
+<div id="problem-3." class="section level2">
+<h2>Problem 3.</h2>
+<p>Execution times are:</p>
+<pre class="r"><code>                           1st. function   
+vector size          1e+06     1e+07    1e+08
+time(sec)             0.05      0.5      4.89 
+                          Vectorized function
+time(sec)             0.0       0.1     0.81</code></pre>
+<p>based on this data, the vectorized function had the best performance. However, one needs to take into account the memory usage which in the case of the vectorized one is at least twice of the initial vector <strong>x</strong>.</p>
 </div>
 
 

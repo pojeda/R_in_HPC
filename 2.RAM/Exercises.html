@@ -390,6 +390,21 @@ summary {
 <h2>Problem 2.</h2>
 <p>Using the above setup for the large array <em>bm</em>, compute the media and standard deviation of each column.</p>
 </div>
+<div id="problem-3." class="section level2">
+<h2>Problem 3.</h2>
+<p>The following R function uses a cutoff of 0.05 to assing the value <strong>NA</strong> to the vector elements:</p>
+<pre class="r"><code>x &lt;- runif(1e+06)
+for (i in 1:length(x)) {
+  if (x[i] &lt; 0.05) {
+    x[i] &lt;- NA
+  }
+}</code></pre>
+<p>below is the vectorized counterpart:</p>
+<pre class="r"><code>x &lt;- runif(1e+06)
+x[which(x &lt; 0.05)] &lt;- NA </code></pre>
+<p>compare the execution times of both functions using vector sizes of 1e+06, 1e+07, and 1e+08.</p>
+<p>Questions: * which function showed the best performance? * would you <em>always</em> use that function? why yes/not?</p>
+</div>
 
 
 
