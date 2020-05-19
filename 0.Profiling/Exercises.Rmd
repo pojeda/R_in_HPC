@@ -7,7 +7,7 @@ output: html_document
 
 ## Problem 1.
 
-When the *user* time is longer than the *elapsed* time from system.time() function?
+Why the *user* time is longer than the *elapsed* time from system.time() function? Explain with words.
 
 ## Problem 2.
 

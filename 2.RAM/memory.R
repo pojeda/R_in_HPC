@@ -60,7 +60,8 @@ object_size(y)
 
 object_size(x, y)
 
-y[[1]] <- x+1
+y[[1]] <- as.integer(x+1)
+
 object_size(y)
 
 

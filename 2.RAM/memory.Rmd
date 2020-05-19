@@ -119,11 +119,13 @@ Vcells 1431935 11.0   21254219 162.2  1431935 11.0
 
 ## Profiling Memory: Pryr
 
-R request for memory not continuously but in blocks:
+Another way to monitor the memory size of the objects is with the *Pryr* package which uses the function **object_size()** for this purpose. 
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
 library(pryr)
 ```
+
+R allocates memory in a heuristic manner. To see this, let us monitor how an object request for memory as it grows with the **object_size()** function:
 
 ## Profiling Memory: Pryr
 
@@ -153,7 +155,7 @@ object_size(x, y)
 after modifying one element of the list we get a different value:
 
 ```{r eval=TRUE}
-y[[1]] <- x+1
+y[[1]] <- as.integer(x+1)
 object_size(y)
 ```
 
