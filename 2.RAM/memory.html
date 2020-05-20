@@ -3136,7 +3136,7 @@ slide:not(.current) .plotly.html-widget{
     }
   </style>
 
-  <style type="text/css">.gdbar img {width: 300px !important;height: 100px !important;margin: 8px 8px;}.gdbar {width: 600px !important;height: 100px !important;}slides > slide:not(.nobackground):before {width: 150px;height: 50px;background-size: 150px 50px;margin: 60px 830px;}</style>
+  <style type="text/css">.gdbar img {width: 300px !important;height: 100px !important;margin: 8px 8px;}.gdbar {width: 600px !important;height: 100px !important;}slides > slide:not(.nobackground):before {width: 150px;height: 50px;background-size: 150px 50px;margin: 30px 860px;}</style>
 
 </head>
 
@@ -3183,108 +3183,96 @@ Rprof(NULL)</pre>
 
 <pre >## $by.self
 ##                   self.time self.pct total.time total.pct mem.total
-## &quot;runif&quot;                3.10    55.36       3.10     55.36    1606.6
-## &quot;as.list.default&quot;      1.08    19.29       1.08     19.29     681.6
-## &quot;siml&quot;                 0.74    13.21       5.60    100.00    3394.3
-## &quot;pow2&quot;                 0.62    11.07       0.62     11.07     508.8
-## &quot;putconst&quot;             0.04     0.71       0.04      0.71       1.3
-## &quot;%in%&quot;                 0.02     0.36       0.02      0.36       0.0
+## &quot;runif&quot;                3.26    56.79       3.26     56.79    1506.3
+## &quot;as.list.default&quot;      1.16    20.21       1.16     20.21     676.5
+## &quot;siml&quot;                 0.84    14.63       5.74    100.00    3304.3
+## &quot;pow2&quot;                 0.42     7.32       0.42      7.32     355.3
+## &quot;checkAssign&quot;          0.04     0.70       0.04      0.70       2.9
+## &quot;findCenvVar&quot;          0.02     0.35       0.02      0.35       0.0
 ## 
 ## $by.total
 ##                        total.time total.pct mem.total self.time self.pct
-## &quot;siml&quot;                       5.60    100.00    3394.3      0.74    13.21
-## &quot;block_exec&quot;                 5.60    100.00    3394.3      0.00     0.00
-## &quot;call_block&quot;                 5.60    100.00    3394.3      0.00     0.00
-## &quot;eval&quot;                       5.60    100.00    3394.3      0.00     0.00
-## &quot;evaluate&quot;                   5.60    100.00    3394.3      0.00     0.00
-## &quot;evaluate::evaluate&quot;         5.60    100.00    3394.3      0.00     0.00
-## &quot;evaluate_call&quot;              5.60    100.00    3394.3      0.00     0.00
-## &quot;handle&quot;                     5.60    100.00    3394.3      0.00     0.00
-## &quot;in_dir&quot;                     5.60    100.00    3394.3      0.00     0.00
-## &quot;knitr::knit&quot;                5.60    100.00    3394.3      0.00     0.00
-## &quot;process_file&quot;               5.60    100.00    3394.3      0.00     0.00
-## &quot;process_group&quot;              5.60    100.00    3394.3      0.00     0.00
-## &quot;process_group.block&quot;        5.60    100.00    3394.3      0.00     0.00
-## &quot;rmarkdown::render&quot;          5.60    100.00    3394.3      0.00     0.00
-## &quot;timing_fn&quot;                  5.60    100.00    3394.3      0.00     0.00
-## &quot;withCallingHandlers&quot;        5.60    100.00    3394.3      0.00     0.00
-## &quot;withVisible&quot;                5.60    100.00    3394.3      0.00     0.00
-## &quot;runif&quot;                      3.10     55.36    1606.6      3.10    55.36
-## &quot;as.list.default&quot;            1.08     19.29     681.6      1.08    19.29
-## &quot;as.list&quot;                    1.08     19.29     681.6      0.00     0.00
-## &quot;pow2&quot;                       0.62     11.07     508.8      0.62    11.07
-## &quot;cmp&quot;                        0.06      1.07       1.3      0.00     0.00
-## &quot;cmpCall&quot;                    0.06      1.07       1.3      0.00     0.00
-## &quot;cmpfun&quot;                     0.06      1.07       1.3      0.00     0.00
-## &quot;cmpPrim2&quot;                   0.06      1.07       1.3      0.00     0.00
-## &quot;compiler:::tryCmpfun&quot;       0.06      1.07       1.3      0.00     0.00
-## &quot;doTryCatch&quot;                 0.06      1.07       1.3      0.00     0.00
-## &quot;genCode&quot;                    0.06      1.07       1.3      0.00     0.00
-## &quot;h&quot;                          0.06      1.07       1.3      0.00     0.00
-## &quot;tryCatch&quot;                   0.06      1.07       1.3      0.00     0.00
-## &quot;tryCatchList&quot;               0.06      1.07       1.3      0.00     0.00
-## &quot;tryCatchOne&quot;                0.06      1.07       1.3      0.00     0.00
-## &quot;tryInline&quot;                  0.06      1.07       1.3      0.00     0.00
-## &quot;putconst&quot;                   0.04      0.71       1.3      0.04     0.71
-## &quot;cb$putcode&quot;                 0.04      0.71       1.3      0.00     0.00
-## &quot;cmpConst&quot;                   0.04      0.71       1.3      0.00     0.00
-## &quot;cmpForBody&quot;                 0.04      0.71       1.3      0.00     0.00
-## &quot;%in%&quot;                       0.02      0.36       0.0      0.02     0.36
-## &quot;cmpPrim1&quot;                   0.02      0.36       0.0      0.00     0.00
-## &quot;cmpSubsetDispatch&quot;          0.02      0.36       0.0      0.00     0.00
-## &quot;cmpSym&quot;                     0.02      0.36       0.0      0.00     0.00
-## &quot;cmpSymbolAssign&quot;            0.02      0.36       0.0      0.00     0.00
-## &quot;findCenvVar&quot;                0.02      0.36       0.0      0.00     0.00
-## &quot;findVar&quot;                    0.02      0.36       0.0      0.00     0.00
+## &quot;siml&quot;                       5.74    100.00    3304.3      0.84    14.63
+## &quot;block_exec&quot;                 5.74    100.00    3304.3      0.00     0.00
+## &quot;call_block&quot;                 5.74    100.00    3304.3      0.00     0.00
+## &quot;eval&quot;                       5.74    100.00    3304.3      0.00     0.00
+## &quot;evaluate&quot;                   5.74    100.00    3304.3      0.00     0.00
+## &quot;evaluate::evaluate&quot;         5.74    100.00    3304.3      0.00     0.00
+## &quot;evaluate_call&quot;              5.74    100.00    3304.3      0.00     0.00
+## &quot;handle&quot;                     5.74    100.00    3304.3      0.00     0.00
+## &quot;in_dir&quot;                     5.74    100.00    3304.3      0.00     0.00
+## &quot;knitr::knit&quot;                5.74    100.00    3304.3      0.00     0.00
+## &quot;process_file&quot;               5.74    100.00    3304.3      0.00     0.00
+## &quot;process_group&quot;              5.74    100.00    3304.3      0.00     0.00
+## &quot;process_group.block&quot;        5.74    100.00    3304.3      0.00     0.00
+## &quot;rmarkdown::render&quot;          5.74    100.00    3304.3      0.00     0.00
+## &quot;timing_fn&quot;                  5.74    100.00    3304.3      0.00     0.00
+## &quot;withCallingHandlers&quot;        5.74    100.00    3304.3      0.00     0.00
+## &quot;withVisible&quot;                5.74    100.00    3304.3      0.00     0.00
+## &quot;runif&quot;                      3.26     56.79    1506.3      3.26    56.79
+## &quot;as.list.default&quot;            1.16     20.21     676.5      1.16    20.21
+## &quot;as.list&quot;                    1.16     20.21     676.5      0.00     0.00
+## &quot;pow2&quot;                       0.42      7.32     355.3      0.42     7.32
+## &quot;cmp&quot;                        0.06      1.05       2.9      0.00     0.00
+## &quot;cmpCall&quot;                    0.06      1.05       2.9      0.00     0.00
+## &quot;cmpfun&quot;                     0.06      1.05       2.9      0.00     0.00
+## &quot;compiler:::tryCmpfun&quot;       0.06      1.05       2.9      0.00     0.00
+## &quot;doTryCatch&quot;                 0.06      1.05       2.9      0.00     0.00
+## &quot;genCode&quot;                    0.06      1.05       2.9      0.00     0.00
+## &quot;h&quot;                          0.06      1.05       2.9      0.00     0.00
+## &quot;tryCatch&quot;                   0.06      1.05       2.9      0.00     0.00
+## &quot;tryCatchList&quot;               0.06      1.05       2.9      0.00     0.00
+## &quot;tryCatchOne&quot;                0.06      1.05       2.9      0.00     0.00
+## &quot;tryInline&quot;                  0.06      1.05       2.9      0.00     0.00
+## &quot;checkAssign&quot;                0.04      0.70       2.9      0.04     0.70
+## &quot;cmpForBody&quot;                 0.04      0.70       2.9      0.00     0.00
+## &quot;findCenvVar&quot;                0.02      0.35       0.0      0.02     0.35
+## &quot;cb$putconst&quot;                0.02      0.35       0.0      0.00     0.00
+## &quot;cmpCallArgs&quot;                0.02      0.35       0.0      0.00     0.00
+## &quot;cmpCallSymFun&quot;              0.02      0.35       0.0      0.00     0.00
+## &quot;cmpSymbolAssign&quot;            0.02      0.35       0.0      0.00     0.00
+## &quot;findLocVar&quot;                 0.02      0.35       0.0      0.00     0.00
 ## 
 ## $sample.interval
 ## [1] 0.02
 ## 
 ## $sampling.time
-## [1] 5.6</pre>
+## [1] 5.74</pre>
 
 <p>notice that the memory usage reported is the accumulated memory.</p>
 
 </article></slide><slide class=""><hgroup><h2>Profiling Memory: gc</h2></hgroup><article  id="profiling-memory-gc">
 
-<p>A better approach would be by using gc() function. gc() reports memory usage at some specific point. Information for parts of the code can be reported with the flags gcinfo():</p>
+<p>A better approach would be by using <em>gc()</em> function. <em>gc()</em> reports the memory usage at some specific point. Information for parts of the code can be reported with the flags <em>gcinfo()</em>:</p>
 
-<pre class = 'prettyprint lang-r'>gc()
-size &lt;- 1000000
-gcinfo(TRUE)
-res &lt;- siml(size)
-gc()
-gcinfo(FALSE)</pre>
+<pre class = 'prettyprint lang-r'>&gt; size &lt;- 1000000
+&gt; gc()
+          used (Mb) gc trigger (Mb) max used (Mb)
+Ncells  551156 29.5    1222600 65.3  1067006 57.0
+Vcells 1413536 10.8    8388608 64.0  1745827 13.4
+
+&gt; gcinfo(TRUE)   #checking the memory usage during function execution
+&gt; res &lt;- siml(size)
+... ommited lines
+Garbage collection 59 = 49+3+7 (level 0) ... 
+563.6 Mbytes of cons cells used (79%)
+171.1 Mbytes of vectors used (76%)
+&gt; gcinfo(FALSE)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Profiling Memory: gc</h2></hgroup><article  id="profiling-memory-gc-1">
 
+<p>A better approach would be by using <strong>gc()</strong> function. <strong>gc()</strong> reports the memory usage at some specific point. Information for parts of the code can be reported with the flags <strong>gcinfo()</strong>:</p>
+
+<p>Finally, a call to <strong>gc()</strong> will report the memory allocated for the outputs of the function <strong>res &lt;- siml()</strong>:</p>
+
 <pre class = 'prettyprint lang-r'>&gt; gc()
-          used (Mb) gc trigger (Mb) max used (Mb)
-Ncells  563898 30.2    1288680 68.9   997866 53.3
-Vcells 1429291 11.0    8388608 64.0  1644410 12.6
-&gt; size &lt;- 1000000
-&gt; gcinfo(TRUE)
-[1] FALSE
-&gt; res &lt;- siml(size)
-...
-Garbage collection 57 = 47+3+7 (level 0) ... 
-564.9 Mbytes of cons cells used (75%)
-171.4 Mbytes of vectors used (76%)
-&gt; gcinfo(FALSE)
-[1] TRUE   </pre>
+          used (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  558900 29.9   10696839 571.3 11155454 595.8
+Vcells 2429818 18.6   23726023 181.1 29657289 226.3</pre>
 
 </article></slide><slide class=""><hgroup><h2>Profiling Memory: gc</h2></hgroup><article  id="profiling-memory-gc-2">
 
 <p>gc() can help us to find memory usage changes upon creating objects:</p>
-
-<pre class = 'prettyprint lang-r'>gc(reset=TRUE)
-listp &lt;- as.list(seq(10000000))
-gc()
-rm(listp)
-gc()
-gc(reset=TRUE)</pre>
-
-</article></slide><slide class=""><hgroup><h2>Profiling Memory: gc</h2></hgroup><article  id="profiling-memory-gc-3">
 
 <pre class = 'prettyprint lang-r'>&gt; gc(reset=TRUE)
           used (Mb) gc trigger (Mb) max used (Mb)
@@ -3296,7 +3284,7 @@ Vcells 1425756 10.9    8388608 64.0  1425756 10.9
 Ncells 10564701 564.3   22068058 1178.6 10567700 564.4
 Vcells 21431560 163.6   33209716  253.4 21441849 163.6</pre>
 
-</article></slide><slide class=""><hgroup><h2>Profiling Memory: gc</h2></hgroup><article  id="profiling-memory-gc-4">
+</article></slide><slide class=""><hgroup><h2>Profiling Memory: gc</h2></hgroup><article  id="profiling-memory-gc-3">
 
 <pre class = 'prettyprint lang-r'>&gt; rm(listp)
 &gt; gc()
@@ -3392,11 +3380,7 @@ Output:
 9   0.019  24.799  48.774    0                               &quot;runif&quot;
 10  0.001  11.420   0.000    0                          character(0)
 11  0.002   7.451   0.000    0                               &quot;runif&quot;
-12  0.002   1.415   0.000    0                          character(0)
-13  0.003   1.869   0.000    0                               &quot;runif&quot;
-14  0.001   0.970   0.000    0                                &quot;pow2&quot;
-15  0.015   1.550  23.684    0                               &quot;runif&quot;
-16  0.001   8.525   0.000    0                          character(0)  </pre>
+...  </pre>
 
 </article></slide><slide class=""><hgroup><h2>Dealing with big arrays</h2></hgroup><article  id="dealing-with-big-arrays">
 

@@ -45,51 +45,39 @@ notice that the memory usage reported is the accumulated memory.
 
 ## Profiling Memory: gc
 
-A better approach would be by using gc() function. gc() reports memory usage at some specific point. Information for parts of the code can be reported with the flags gcinfo(): 
-
+A better approach would be by using *gc()* function. *gc()* reports the memory usage at some specific point. Information for parts of the code can be reported with the flags *gcinfo()*: 
 
 ```{r eval=FALSE}
-gc()
-size <- 1000000
-gcinfo(TRUE)
-res <- siml(size)
-gc()
-gcinfo(FALSE)
-```
+> size <- 1000000
+> gc()
+          used (Mb) gc trigger (Mb) max used (Mb)
+Ncells  551156 29.5    1222600 65.3  1067006 57.0
+Vcells 1413536 10.8    8388608 64.0  1745827 13.4
 
+> gcinfo(TRUE)   #checking the memory usage during function execution
+> res <- siml(size)
+... ommited lines
+Garbage collection 59 = 49+3+7 (level 0) ... 
+563.6 Mbytes of cons cells used (79%)
+171.1 Mbytes of vectors used (76%)
+> gcinfo(FALSE)
+```
 ## Profiling Memory: gc
+
+A better approach would be by using **gc()** function. **gc()** reports the memory usage at some specific point. Information for parts of the code can be reported with the flags **gcinfo()**: 
+
+Finally, a call to **gc()** will report the memory allocated for the outputs of the function **res <- siml()**:
 
 ```{r eval=FALSE}
 > gc()
-          used (Mb) gc trigger (Mb) max used (Mb)
-Ncells  563898 30.2    1288680 68.9   997866 53.3
-Vcells 1429291 11.0    8388608 64.0  1644410 12.6
-> size <- 1000000
-> gcinfo(TRUE)
-[1] FALSE
-> res <- siml(size)
-...
-Garbage collection 57 = 47+3+7 (level 0) ... 
-564.9 Mbytes of cons cells used (75%)
-171.4 Mbytes of vectors used (76%)
-> gcinfo(FALSE)
-[1] TRUE   
+          used (Mb) gc trigger  (Mb) max used  (Mb)
+Ncells  558900 29.9   10696839 571.3 11155454 595.8
+Vcells 2429818 18.6   23726023 181.1 29657289 226.3
 ```
 
 ## Profiling Memory: gc
 
 gc() can help us to find memory usage changes upon creating objects:
-
-```{r eval=FALSE}
-gc(reset=TRUE)
-listp <- as.list(seq(10000000))
-gc()
-rm(listp)
-gc()
-gc(reset=TRUE)
-```
-
-## Profiling Memory: gc
 
 ```{r eval=FALSE}
 > gc(reset=TRUE)
@@ -205,11 +193,7 @@ Output:
 9   0.019  24.799  48.774    0                               "runif"
 10  0.001  11.420   0.000    0                          character(0)
 11  0.002   7.451   0.000    0                               "runif"
-12  0.002   1.415   0.000    0                          character(0)
-13  0.003   1.869   0.000    0                               "runif"
-14  0.001   0.970   0.000    0                                "pow2"
-15  0.015   1.550  23.684    0                               "runif"
-16  0.001   8.525   0.000    0                          character(0)  
+...  
 ```
 
 ## Dealing with big arrays

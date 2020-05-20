@@ -29,12 +29,12 @@ summaryRprof("Rprof-mem.out", memory="both")
 
 #Using garbage collector gc
 
-gc()
 size <- 1000000
+gc()
 gcinfo(TRUE)
 res <- siml(size)
-gc()
 gcinfo(FALSE)
+gc()
 
 
 gc(reset=TRUE)
