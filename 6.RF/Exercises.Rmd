@@ -15,17 +15,19 @@ Take a look at the code for the credit bank data set in the script **parallel.R*
 
 ## Problem 2
  
-Create a matrix A of ones with a size 1000x1000. Analyze the timings and memory usage with tictoc and gcinfo() respectively of the following function:
+* Create a matrix A of ones with a size 5000x2000. Analyze the timings and memory usage with tictoc and gcinfo() respectively of the following function:
 
 ```{r eval=FALSE}
 res1 <- foreach(i=1:nrow(A), .combine='rbind') %dopar% (A[i,]/mean(A[i,]))
 ```
 
-what are the timings when one goes from 1 core to 2 cores? Does the performance improve upon increasing the number of cores?
+* What are the timings when one goes from 1 core to 2 cores? Does the performance improve considerably upon increasing the number of cores? 
+
+* What is the memory usage reported by gcinfo()? Could this result be linked to the performance observed when going from 1 to 2 cores?
 
 ## Problem 3.
 
-Compare the performance of the following function for computing the eigenvalues of a matrix of NxN (500x500) by using a different number of cores and using the **foreach** function:
+* Compare the performance of the following function for computing the eigenvalues of a matrix of *NxN* by using a different number of cores and using the **foreach** function, with *N* going from 1 to 500:
 
 ```{r eval=FALSE}
 max.eig <- function(N, sigma) {
@@ -37,10 +39,11 @@ max.eig <- function(N, sigma) {
 }
 ```
 
-How is the performance of the **foreach** function compared to a **sapply** vectorized function for a single core:
+
+* How is the performance of the **foreach** function with 1 core compared with that of the **sapply** function (N=500):
 
 ```{r eval=FALSE}
-res3 <- sapply(1:500, function(n) {max.eig(n, 1)})
+res3 <- sapply(1:N, function(n) {max.eig(n, 1)})
 ```
 
 

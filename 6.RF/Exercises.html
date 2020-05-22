@@ -12,7 +12,7 @@
 <meta name="author" content="Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund" />
 
 
-<title>Solutions</title>
+<title>Exercises</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -375,67 +375,44 @@ summary {
 
 
 
-<h1 class="title toc-ignore">Solutions</h1>
+<h1 class="title toc-ignore">Exercises</h1>
 <h4 class="author">Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund</h4>
 <h4 class="date">May 27th, 2020</h4>
 
 </div>
 
 
-<div id="problem-1." class="section level2">
-<h2>Problem 1.</h2>
-<p>The relevant scripts for this tasks are in the current 6.RF folder: <strong>parallel.R</strong> and <strong>job_parallel.sh</strong></p>
+<div id="problem-1" class="section level2">
+<h2>Problem 1</h2>
+<p>Take a look at the code for the credit bank data set in the script <strong>parallel.R</strong> and also at the <strong>job_parallel.sh</strong> batch script. Set the number of cores you want to use in both scripts first to 1 and then increase the number up to 6. Upload the working folder to Kebnekaise and run the simulation. Monitor the timings for the simulations. You may use the <em>job-usage</em> tool on Kebnekaise.</p>
 </div>
-<div id="problem-2." class="section level2">
-<h2>Problem 2.</h2>
-<p>The profiling results can be obtained with:</p>
-<pre class="r"><code>library(doParallel)
-library(tictoc)
-
-A &lt;- matrix(1.0, 5000, 2000)
-
-cl &lt;- makeCluster(1)   #change this number to 2 in the 2 cores case
-registerDoParallel(cl)
-gcinfo(TRUE)
-tic()
-res1 &lt;- foreach(i=1:nrow(A), .combine=&#39;rbind&#39;) %dopar% (A[i,]/mean(A[i,])) 
-toc()
-gcinfo(FALSE)
-stopCluster(cl)</code></pre>
-<pre class="r"><code>Timings: 
-1 core -&gt; 8.6 sec  
-2 core -&gt; 8.3 sec </code></pre>
-<p>the performance improvement upon going from 1 to 2 cores is rather small.</p>
-<pre class="r"><code>Memory usage: 
-1 core -&gt; 32.1 Mb, 308.9 Mb  
-2 core -&gt; 32.1 Mb, 308.9 Mb</code></pre>
-<p>from this result we can see that our function makes internal copies of data. This creates an overhead which is reflected in the poor scaling behavior of the function. The situation could be worse if we increase the size of the matrix A.</p>
+<div id="problem-2" class="section level2">
+<h2>Problem 2</h2>
+<ul>
+<li>Create a matrix A of ones with a size 5000x2000. Analyze the timings and memory usage with tictoc and gcinfo() respectively of the following function:</li>
+</ul>
+<pre class="r"><code>res1 &lt;- foreach(i=1:nrow(A), .combine=&#39;rbind&#39;) %dopar% (A[i,]/mean(A[i,]))</code></pre>
+<ul>
+<li><p>What are the timings when one goes from 1 core to 2 cores? Does the performance improve considerably upon increasing the number of cores?</p></li>
+<li><p>What is the memory usage reported by gcinfo()? Could this result be linked to the performance observed when going from 1 to 2 cores?</p></li>
+</ul>
 </div>
 <div id="problem-3." class="section level2">
 <h2>Problem 3.</h2>
-<pre class="r"><code>library(doParallel)
-library(tictoc)</code></pre>
+<ul>
+<li>Compare the performance of the following function for computing the eigenvalues of a matrix of <em>NxN</em> by using a different number of cores and using the <strong>foreach</strong> function, with <em>N</em> going from 1 to 500:</li>
+</ul>
 <pre class="r"><code>max.eig &lt;- function(N, sigma) {
     d &lt;- matrix(rnorm(N**2, sd = sigma), nrow = N)
 
     E &lt;- eigen(d)$values
     
     abs(E)[[1]]
-}
-
-
-cl &lt;- makeCluster(1)
-registerDoParallel(cl)
-tic()
-res2 &lt;- foreach(n = 1:500, .combine=&#39;rbind&#39;) %dopar% max.eig(n, 1)
-toc()</code></pre>
-<pre><code>## 109.87 sec elapsed</code></pre>
-<pre class="r"><code>stopCluster(cl)
-
-tic()
-res3 &lt;- sapply(1:500, function(n) {max.eig(n, 1)})
-toc()</code></pre>
-<pre><code>## 109.75 sec elapsed</code></pre>
+}</code></pre>
+<ul>
+<li>How is the performance of the <strong>foreach</strong> function with 1 core compared with that of the <strong>sapply</strong> function (N=500):</li>
+</ul>
+<pre class="r"><code>res3 &lt;- sapply(1:N, function(n) {max.eig(n, 1)})</code></pre>
 </div>
 
 

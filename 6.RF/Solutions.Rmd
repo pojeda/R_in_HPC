@@ -5,19 +5,21 @@ date: "May 27th, 2020"
 output: html_document
 ---
 
+## Problem 1. 
 
+The relevant scripts for this tasks are in the current 6.RF folder: **parallel.R** and **job_parallel.sh**
 
 ## Problem 2.
 
+The profiling results can be obtained with:
 
 ```{r eval=FALSE}
 library(doParallel)
 library(tictoc)
 
-#A <- matrix(sample(0:1, 1000000, replace = TRUE),10000,10000)
-A <- matrix(1.0, 5000, 1000)
+A <- matrix(1.0, 5000, 2000)
 
-cl <- makeCluster(2)
+cl <- makeCluster(1)   #change this number to 2 in the 2 cores case
 registerDoParallel(cl)
 gcinfo(TRUE)
 tic()
@@ -27,12 +29,30 @@ gcinfo(FALSE)
 stopCluster(cl)
 ```
 
+```{r eval=FALSE}
+Timings: 
+1 core -> 8.6 sec  
+2 core -> 8.3 sec 
+```
+
+the performance improvement upon going from 1 to 2 cores is rather small. 
+
+```{r eval=FALSE}
+Memory usage: 
+1 core -> 32.1 Mb, 308.9 Mb  
+2 core -> 32.1 Mb, 308.9 Mb
+```
+
+from this result we can see that our function makes internal copies of data. This creates an overhead which is reflected in the poor scaling behavior of the function. The situation could be worse if we increase the size of the matrix A. 
+
 ## Problem 3.
 
-```{r eval=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE}
 library(doParallel)
 library(tictoc)
+```
 
+```{r eval=TRUE}
 max.eig <- function(N, sigma) {
     d <- matrix(rnorm(N**2, sd = sigma), nrow = N)
 
