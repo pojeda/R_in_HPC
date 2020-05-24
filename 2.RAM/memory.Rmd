@@ -45,7 +45,7 @@ notice that the memory usage reported is the accumulated memory.
 
 ## Profiling Memory: gc
 
-A better approach would be by using *gc()* function. *gc()* reports the memory usage at some specific point. Information for parts of the code can be reported with the flags *gcinfo()*: 
+A better approach would be by using **gc()** function. **gc()** reports the memory usage at some specific point. Information for parts of the code can be reported with the flags **gcinfo()**: 
 
 ```{r eval=FALSE}
 > size <- 1000000
