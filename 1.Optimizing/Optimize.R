@@ -75,30 +75,15 @@ system.time(data1 <- rowSums(data1))
 dataf <- data.frame(data1)
 system.time(data2 <- rowSums(dataf))
 
-#1.6 Lookup tables
-# data <- rnorm(1E6)
-# data_ls <- as.list(data)
-# names(data_ls) <- paste("V", c(1:1E6), sep="")
-# ind_rand <- sample(1:1E6, size=100, replace=T)
-# ind <- paste("V",ind_rand, sep="")
-# 
-# list_time <- sapply(ind, FUN=function(x) {system.time(data_ls[[x]])[3]})
-# sum(list_time)
-# 
-# #install.packages("hash")
-# library(hash)
-# data_h <- hash(names(data_ls),data)
-# hash_time <- sapply(ind, FUN=function(x) {system.time(data_h[[x]])[3]})
-# sum(hash_time)
 
-#1.7 Different implementations of functions
+#1.5 Different implementations of functions
 data <- rnorm(1E5*100)
 dim(data) <- c(1E5,100)
 system.time(prcomp_data <- prcomp(data))
 system.time(princomp_data <- princomp(data))
 
 
-#1.8 Compiling functions
+#1.6 Compiling functions
 sim <- function(l) {
   c <- rep(0,l)
   hits <- 0
@@ -139,7 +124,7 @@ enableJIT(level=3)
 
 bench <- microbenchmark(sim(size))
 
-#1.9 Calling external functions
+#1.7 Calling external functions
 
 sim <- function(l) {
   c <- rep(0,l)

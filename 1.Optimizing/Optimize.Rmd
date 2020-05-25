@@ -109,35 +109,6 @@ system.time(data1 <- rowSums(data1))
 Then, it is more efficient to use matrices upon doing numerical calculations rather than Data Frames. 
 
 
-## Lookup tables
-
-```{r}
-data <- rnorm(1E6)
-data_ls <- as.list(data)
-names(data_ls) <- paste("V", c(1:1E6), sep="")
-ind_rand <- sample(1:1E6, size=100, replace=T)
-ind <- paste("V",ind_rand, sep="")
- 
-list_time <- sapply(ind, FUN=function(x) {system.time(data_ls[[x]])[3]})
-sum(list_time)
-```
-
-in R there is a package for handling lookup tables called *hash*:
-
-## Lookup tables
-```{r eval=FALSE} 
-install.packages("hash")
-```
-
-the code for handling hash table is as follows:
-
-```{r}
-library(hash)
-data_h <- hash(names(data_ls),data)
-hash_time <- sapply(ind, FUN=function(x) {system.time(data_h[[x]])[3]})
-sum(hash_time)
-```
-
 ## Different implementations of functions
 
 Principal components analysis
@@ -240,7 +211,7 @@ write(6,*) pival,n
 end subroutine pifunc
 ```
 
-## Advanced Topics: 
+## Advanced Topics (Kebnekaise): 
 
 ### Calling external functions
 
@@ -260,7 +231,7 @@ is.loaded("pifunc")
 
 
 
-## Advanced Topics:
+## Advanced Topics (Kebnekaise):
 
 ### Calling external functions
 
@@ -272,7 +243,7 @@ bench <- microbenchmark(sim(size), .Fortran("pifunc", n = as.integer(size)))
 bench
 ```
 
-## Advanced Topics:
+## Advanced Topics (Kebnekaise):
 ### BLAS/LAPACK libraries
 
 On Kebnekaise the OpenBLAS libraries are available:
@@ -288,7 +259,7 @@ Matrix products: default
 BLAS/LAPACK: /cvmfs/.../8.2.0-2.31.1/OpenBLAS/0.3.5/lib/libopenblas_haswellp-r0.3.5.so
 ```
 
-## Advanced Topics:
+## Advanced Topics (Kebnekaise):
 ### BLAS/LAPACK libraries
 
 The number of threads can be controlled with the *RhpcBLASctl* package and setting the number of threads:
@@ -306,7 +277,7 @@ for (i in 1:nsim) {
 cat(c("Computation of eig. random matrix 5000x5000 (sec): ", times, "\n"))
 ```
 
-## Advanced Topics:
+## Advanced Topics (Kebnekaise):
 ### BLAS/LAPACK libraries
 
 ```{r eval=TRUE}

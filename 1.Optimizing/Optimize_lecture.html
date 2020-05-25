@@ -149,7 +149,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   0.271   0.030   0.302</pre>
+##   0.259   0.019   0.278</pre>
 
 </article></slide><slide class=""><hgroup><h2>Vectorization</h2></hgroup><article  id="vectorization">
 
@@ -171,7 +171,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   0.006   0.000   0.006</pre>
+##   0.006   0.000   0.007</pre>
 
 <p>a message from this example is that loops are expensive in R and vectorization can help to improve the performance of the code.</p>
 
@@ -186,7 +186,7 @@ system.time({
   })</pre>
 
 <pre >##    user  system elapsed 
-##  14.851   0.123  14.975</pre>
+##  13.865   0.239  14.105</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory pre-allocation</h2></hgroup><article  id="memory-pre-allocation-1">
 
@@ -199,7 +199,7 @@ system.time({
 })</pre>
 
 <pre >##    user  system elapsed 
-##   0.411   0.032   0.443</pre>
+##   0.381   0.013   0.393</pre>
 
 <p>This example shows that pre-allocating memory reduces the execution time.</p>
 
@@ -210,7 +210,7 @@ dataf &lt;- data.frame(data1)
 system.time(data2 &lt;- rowSums(dataf))</pre>
 
 <pre >##    user  system elapsed 
-##   0.150   0.160   0.309</pre>
+##   0.154   0.135   0.290</pre>
 
 </article></slide><slide class=""><hgroup><h2>Using Data Frames</h2></hgroup><article  id="using-data-frames-1">
 
@@ -219,40 +219,9 @@ dim(data1) &lt;- c(1E4,1000)
 system.time(data1 &lt;- rowSums(data1))</pre>
 
 <pre >##    user  system elapsed 
-##   0.040   0.028   0.068</pre>
+##   0.030   0.035   0.066</pre>
 
 <p>Then, it is more efficient to use matrices upon doing numerical calculations rather than Data Frames.</p>
-
-</article></slide><slide class=""><hgroup><h2>Lookup tables</h2></hgroup><article  id="lookup-tables">
-
-<pre class = 'prettyprint lang-r'>data &lt;- rnorm(1E6)
-data_ls &lt;- as.list(data)
-names(data_ls) &lt;- paste(&quot;V&quot;, c(1:1E6), sep=&quot;&quot;)
-ind_rand &lt;- sample(1:1E6, size=100, replace=T)
-ind &lt;- paste(&quot;V&quot;,ind_rand, sep=&quot;&quot;)
- 
-list_time &lt;- sapply(ind, FUN=function(x) {system.time(data_ls[[x]])[3]})
-sum(list_time)</pre>
-
-<pre >## [1] 0.665</pre>
-
-<p>in R there is a package for handling lookup tables called <em>hash</em>:</p>
-
-</article></slide><slide class=""><hgroup><h2>Lookup tables</h2></hgroup><article  id="lookup-tables-1">
-
-<pre class = 'prettyprint lang-r'>install.packages(&quot;hash&quot;)</pre>
-
-<p>the code for handling hash table is as follows:</p>
-
-<pre class = 'prettyprint lang-r'>library(hash)</pre>
-
-<pre >## hash-2.2.6.1 provided by Decision Patterns</pre>
-
-<pre class = 'prettyprint lang-r'>data_h &lt;- hash(names(data_ls),data)
-hash_time &lt;- sapply(ind, FUN=function(x) {system.time(data_h[[x]])[3]})
-sum(hash_time)</pre>
-
-<pre >## [1] 0.01</pre>
 
 </article></slide><slide class=""><hgroup><h2>Different implementations of functions</h2></hgroup><article  id="different-implementations-of-functions">
 
@@ -267,12 +236,12 @@ dim(data) &lt;- c(1E5,100)
 system.time(prcomp_data &lt;- prcomp(data))</pre>
 
 <pre >##    user  system elapsed 
-##   4.020   0.260   4.285</pre>
+##   1.847   0.244   2.094</pre>
 
 <pre class = 'prettyprint lang-r'>system.time(princomp_data &lt;- princomp(data))</pre>
 
 <pre >##    user  system elapsed 
-##   1.783   0.260   2.044</pre>
+##   0.663   0.268   0.932</pre>
 
 </article></slide><slide class=""><hgroup><h2>Compiling your functions</h2></hgroup><article  id="compiling-your-functions">
 
@@ -309,12 +278,12 @@ bench &lt;- microbenchmark(sim(size), sim.comp0(size), sim.comp1(size), sim.comp
 <pre class = 'prettyprint lang-r'>bench</pre>
 
 <pre >## Unit: milliseconds
-##             expr      min       lq     mean   median       uq       max
-##        sim(size) 207.0903 326.2635 321.4793 329.6272 337.1358 1208.2384
-##  sim.comp0(size) 389.3805 515.0715 516.1978 524.9753 535.5476  608.3984
-##  sim.comp1(size) 273.7409 377.5853 379.4051 390.6822 397.6959 1293.8880
-##  sim.comp2(size) 204.4585 320.0681 302.9066 327.7976 334.4984  356.9566
-##  sim.comp3(size) 200.7672 319.0812 313.3010 325.0286 334.5559 1225.3426
+##             expr      min       lq     mean   median       uq      max
+##        sim(size) 214.1488 219.0366 223.8038 222.4957 226.7930 271.6651
+##  sim.comp0(size) 390.4169 398.6393 406.2475 403.3680 410.6842 439.1058
+##  sim.comp1(size) 273.0803 280.0022 286.9607 284.9832 290.9280 320.7940
+##  sim.comp2(size) 211.9885 218.9422 223.9204 221.7130 224.7657 268.3534
+##  sim.comp3(size) 208.5837 216.3011 221.0803 219.1282 225.0203 255.3169
 ##  neval cld
 ##    100 a  
 ##    100   c
@@ -342,8 +311,8 @@ enableJIT(level=3)</pre>
 bench</pre>
 
 <pre >## Unit: milliseconds
-##       expr      min       lq     mean  median       uq      max neval
-##  sim(size) 211.0835 325.0548 317.8986 326.592 328.2921 1261.733   100</pre>
+##       expr      min       lq    mean   median       uq      max neval
+##  sim(size) 220.9423 223.6513 230.144 228.6271 233.2094 339.9055   100</pre>
 
 </article></slide><slide class=""><hgroup><h2>Advanced Topics (Kebnekaise):</h2></hgroup><article  id="advanced-topics-kebnekaise">
 
@@ -368,7 +337,7 @@ pival = 4.0d0*hits/(1.0*n)
 write(6,*) pival,n
 end subroutine pifunc</pre>
 
-</article></slide><slide class=""><hgroup><h2>Advanced Topics:</h2></hgroup><article  id="advanced-topics">
+</article></slide><slide class=""><hgroup><h2>Advanced Topics (Kebnekaise):</h2></hgroup><article  id="advanced-topics-kebnekaise-1">
 
 <h3>Calling external functions</h3>
 
@@ -388,7 +357,7 @@ is.loaded(&quot;pifunc&quot;)</pre>
 <pre >## $n
 ## [1] 100000</pre>
 
-</article></slide><slide class=""><hgroup><h2>Advanced Topics:</h2></hgroup><article  id="advanced-topics-1">
+</article></slide><slide class=""><hgroup><h2>Advanced Topics (Kebnekaise):</h2></hgroup><article  id="advanced-topics-kebnekaise-2">
 
 <h3>Calling external functions</h3>
 
@@ -400,13 +369,13 @@ bench</pre>
 
 <pre >## Unit: milliseconds
 ##                                      expr        min         lq       mean
-##                                 sim(size) 210.905991 325.698623 309.701193
-##  .Fortran(&quot;pifunc&quot;, n = as.integer(size))   3.776005   3.826729   3.886754
-##      median         uq        max neval cld
-##  327.615179 329.374571 339.967628   100   b
-##    3.859755   3.925235   4.228189   100  a</pre>
+##                                 sim(size) 218.287517 226.201593 231.749997
+##  .Fortran(&quot;pifunc&quot;, n = as.integer(size))   3.776416   3.947488   4.071987
+##     median         uq        max neval cld
+##  231.30169 234.713425 349.079339   100   b
+##    4.06449   4.147835   7.457156   100  a</pre>
 
-</article></slide><slide class=""><hgroup><h2>Advanced Topics:</h2></hgroup><article  id="advanced-topics-2">
+</article></slide><slide class=""><hgroup><h2>Advanced Topics (Kebnekaise):</h2></hgroup><article  id="advanced-topics-kebnekaise-3">
 
 <h3>BLAS/LAPACK libraries</h3>
 
@@ -421,7 +390,7 @@ Running under: Ubuntu 16.04.6 LTS
 Matrix products: default
 BLAS/LAPACK: /cvmfs/.../8.2.0-2.31.1/OpenBLAS/0.3.5/lib/libopenblas_haswellp-r0.3.5.so</pre>
 
-</article></slide><slide class=""><hgroup><h2>Advanced Topics:</h2></hgroup><article  id="advanced-topics-3">
+</article></slide><slide class=""><hgroup><h2>Advanced Topics (Kebnekaise):</h2></hgroup><article  id="advanced-topics-kebnekaise-4">
 
 <h3>BLAS/LAPACK libraries</h3>
 
@@ -438,9 +407,9 @@ for (i in 1:nsim) {
 } ; times &lt;- summa/nsim
 cat(c(&quot;Computation of eig. random matrix 5000x5000 (sec): &quot;, times, &quot;\n&quot;))</pre>
 
-<pre >## Computation of eig. random matrix 5000x5000 (sec):  15.0836666666667</pre>
+<pre >## Computation of eig. random matrix 5000x5000 (sec):  15.2476666666667</pre>
 
-</article></slide><slide class=""><hgroup><h2>Advanced Topics:</h2></hgroup><article  id="advanced-topics-4">
+</article></slide><slide class=""><hgroup><h2>Advanced Topics (Kebnekaise):</h2></hgroup><article  id="advanced-topics-kebnekaise-5">
 
 <h3>BLAS/LAPACK libraries</h3>
 
@@ -458,7 +427,7 @@ for (i in 1:nsim) {
 times &lt;- summa/nsim
 cat(c(&quot;Computation of eig. random matrix 5000x5000 (sec): &quot;, times, &quot;\n&quot;))</pre>
 
-<pre >## Computation of eig. random matrix 5000x5000 (sec):  7.78533333333333</pre>
+<pre >## Computation of eig. random matrix 5000x5000 (sec):  7.791</pre>
 
 </article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  id="references">
 
