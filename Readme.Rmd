@@ -15,3 +15,4 @@ Notes:
 * Instead of compiling the *.Rmd* file, you can work on the corresponding *.R* file to execute parts of the code.
 
 * For the Exercises, we provided you with templates for the functions. Here, you are expected to write your own code using this template.
+  Exercises and their solutions can be found in the folders with the same names. 
