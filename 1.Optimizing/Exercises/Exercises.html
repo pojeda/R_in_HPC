@@ -398,11 +398,11 @@ summary {
   }
   return(colsm)
 }</code></pre>
-<p>we also observed that the loops were the most expensive part of the function. Use the vectorized function colSums() to simplify the loop and monitored the performance of these two functions (sumcol) and your proposal with any of the already seen profiling tools.</p>
+<p>we also observed that the loops were the most expensive part of the function. Use the vectorized function colSums() which simplifies the heavy loop and monitor the performance of these two functions (sumcol, colSums) with any of the already seen benchmarking tools (rbenchmark, microbenchmark).</p>
 </div>
 <div id="problem-2." class="section level2">
 <h2>Problem 2.</h2>
-<p>Create a function which computes the standard deviation of each column of a matrix A of size 10000x3 using for loops. Compare the performance of this function with the vectorized counterpart <em>apply()</em> function for computing the standard deviation. Finally, compare the performance of these two functions with the colSds() function from the <em>library(matrixStats)</em> package.</p>
+<p>Create a function which computes the standard deviation of each column of a matrix A of size 10000x3 using for loops. Compare the performance of this function with the counterpart <em>apply()</em> function for computing the standard deviation. Finally, compare the performance of these two functions with the colSds() function from the <em>library(matrixStats)</em> package.</p>
 </div>
 
 

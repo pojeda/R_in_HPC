@@ -26,7 +26,7 @@ sumcol <- function(B) {
 }
 ```
 
-we also observed that the loops were the most expensive part of the function. Use the vectorized function colSums() to simplify the loop and monitored the performance of these two functions (sumcol) and your proposal with any of the already seen profiling tools.
+we also observed that the loops were the most expensive part of the function. Use the vectorized function colSums() which simplifies the heavy loop and monitor the performance of these two functions (sumcol, colSums) with any of the already seen benchmarking tools (rbenchmark, microbenchmark).
 
 ## Problem 2.
 

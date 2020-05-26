@@ -63,6 +63,8 @@ system.time(
 
 a message from this example is that loops are expensive in R and vectorization can help to improve the performance of the code.
 
+Common vector operations: $+$, $-$, $/$, $*$, $\% * \%$.
+
 ## Memory pre-allocation
 
 ```{r}
