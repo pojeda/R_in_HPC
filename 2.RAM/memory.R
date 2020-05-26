@@ -127,14 +127,19 @@ while (start <= nrow(bm)) {
 #2. Using the bm array above, compute the mean and standard deviation of each column
 
 #3.
-x <- runif(1e+09)
+
+
+x <- runif(1e+08)
+gcinfo(TRUE)
   for (i in 1:length(x)) {
     if (x[i] < 0.05) {
       x[i] <- NA
     }
   }
+gcinfo(FALSE)
 
-
-x <- runif(1e+09)
+x <- runif(1e+08)
+gcinfo(TRUE)
   x[which(x < 0.05)] <- NA 
+gcinfo(FALSE)
 

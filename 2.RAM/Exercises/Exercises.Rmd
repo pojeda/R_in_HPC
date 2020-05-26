@@ -10,10 +10,10 @@ output: html_document
 Using the functions sumcol() and colSums() from the Profiling section, obtain a memory profiling summary using Rprof
 
 ## Problem 2.
-Using the above setup for the large array *bm*, compute the media and standard deviation of each column for a matrix with a size 1e7x3 and using chunks of 1e6.
+Using the setup, from slide 17 of the lecture for the large array *bm*, compute the mean and standard deviation of each column for a matrix with a size $10^7 \times 3$ and using chunks of $10^6$.
 
 ## Problem 3. 
-The following R function uses a cutoff of 0.05 to assing the value **NA** to the vector elements:
+The following R code uses a cutoff of 0.05 to assing the value **NA** to the vector elements:
 
 ```{r}
 x <- runif(1e+06)
@@ -31,8 +31,28 @@ x <- runif(1e+06)
 x[which(x < 0.05)] <- NA 
 ```
 
-compare the execution times of both functions using vector sizes of 1e+06, 1e+07, and 1e+08. 
+compare the execution times of both functions using vector sizes of 1e+06, 1e+07, and 1e+08. Which function showed the best performance?
 
-Questions: 
-   * which function showed the best performance?
-   * would you *always* use that function? why yes/not?
+Use *gcinfo* to analyze the memory used by both codes (plain loop and the vectorized one) as follows: 
+
+```{r eval=FALSE}
+x <- runif(1e+08)
+#Plain loop
+gcinfo(TRUE)
+  for (i in 1:length(x)) {
+    if (x[i] < 0.05) {
+      x[i] <- NA
+    }
+  }
+gcinfo(FALSE)
+```
+
+```{r eval=FALSE}
+x <- runif(1e+08)
+#Vectorized code
+gcinfo(TRUE)
+  x[which(x < 0.05)] <- NA 
+gcinfo(FALSE)
+```
+
+which code uses more memory? Based on this result, when would it be more appropriate to use the plain loop and when the vectorized code? **Note: in order to run the codes for the plain loop and the vectorized code, one needs to start with a fresh R session (Ctrl+Shift+F10)**
