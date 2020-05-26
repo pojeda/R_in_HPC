@@ -55,4 +55,4 @@ gcinfo(TRUE)
 gcinfo(FALSE)
 ```
 
-which code uses more memory? Based on this result, when would it be more appropriate to use the plain loop and when the vectorized code? **Note: in order to run the codes for the plain loop and the vectorized code, one needs to start with a fresh R session (Ctrl+Shift+F10)**
+which code uses more memory? Based on this result, when would it be more appropriate to use the plain loop and when the vectorized code? **Note: in order to run the codes for the plain loop and the vectorized code, one needs to start with a fresh R session (Ctrl+Shift+F10) for each of them**
