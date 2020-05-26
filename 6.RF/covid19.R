@@ -68,7 +68,7 @@ grid_rf <- expand.grid(.mtry = c(2,3))
 
 set.seed(300)
 
-cluster <- makeCluster(4) # convention to leave 1 core for OS
+cluster <- makeCluster(4) 
 registerDoParallel(cluster)
 system.time( 
   m_rf <- train(new_deaths~total_cases+new_cases+total_deaths+id, data = train, method = "rf",

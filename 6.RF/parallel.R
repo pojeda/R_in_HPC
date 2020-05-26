@@ -13,7 +13,9 @@ library(doParallel)
 #install.packages("e1071")
 library(randomForest)
 set.seed(300)
+system.time(
 rf <- randomForest(default ~ ., data = credit)
+)
 rf
 
 #using Caret
@@ -25,7 +27,7 @@ grid_rf <- expand.grid(.mtry = c(2, 4, 8, 16))
 
 set.seed(300)
 
-cluster <- makeCluster(2) # convention to leave 1 core for OS
+cluster <- makeCluster(12) # convention to leave 1 core for OS
 registerDoParallel(cluster)
 system.time( 
 m_rf <- train(default ~ ., data = credit, method = "rf",
