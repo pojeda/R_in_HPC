@@ -1,4 +1,5 @@
 May 27th, 2020
+Pedro Ojeda, Birgitte Brydsö, Mirko Myllykoski, Lars Viklund
 
 The material for the *R in HPC* course is provided in the following directories:
           
